@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FinSure"
+    }
+  },
+  "defaultProject": "FinSure",
+  "cli": {
+    "analytics": false
+  }
 }
