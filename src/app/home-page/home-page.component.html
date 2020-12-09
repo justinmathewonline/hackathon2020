@@ -1,50 +1,37 @@
 <div class="content" role="main">
-  <!-- Highlight Card -->
   <div>
-  <div class="card highlight-card card-small">
-    <span>Quick Request As Guest User</span>
-    <div>
+    <div class="card highlight-card card-small">
+      <span>Quick Request As Guest User</span>
+      <div>
+      </div>
     </div>
-  </div>
-  <div class="card-container">
-    <div class="div-table">
-      <div class="div-table-row">
-        <div class="div-table-col">Enter Source location.</div>
-        <div class="div-table-col"> <input type="text" id="txtSourceLocation"></div>
-      </div>
-      <div class="div-table-row">
-        <div class="div-table-col">Enter Phone number</div>
-        <div class="div-table-col"> <input type="text" id="txtPhoneNumber"></div>
-      </div>
-      <div class="div-table-row">
-        <div class="div-table-col">
+    <div class="card-container">
+      <div class="div-table">
+        <div class="div-table-row">
+          <div class="div-table-col">Enter Source location.</div>
+          <div class="div-table-col"> <input type="text" id="txtSourceLocation"></div>
         </div>
-        <div class="div-table-col"> <button>Call Ambulance</button></div>
+        <div class="div-table-row">
+          <div class="div-table-col">Enter Phone number</div>
+          <div class="div-table-col"> <input type="text" id="txtPhoneNumber"></div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-col">
+          </div>
+          <div class="div-table-col"> <button>Call Ambulance</button></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card-container">
-    <div class="div-table-map">
-      <div class="div-table-row-map">
-        <div class=".div-table-col-map">
-          <agm-map [latitude]="lat" [longitude]="lng">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-          </agm-map>
+    <div class="card-container">
+      <div class="div-table-map">
+        <div class="div-table-row-map">
+          <div class=".div-table-col-map">
+            <agm-map [latitude]="lat" [longitude]="lng">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-  <!-- Footer -->
-  <footer>
-
-  </footer>
-
-
-</div>
-
-
-
-
-
-<router-outlet></router-outlet>
