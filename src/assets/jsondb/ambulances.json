@@ -1,0 +1,14 @@
+{
+    "ambulances": [{
+        "Type":"Basic",
+        "RegNumber":"KL62-3188",
+        "Model":"Traveller",
+        "Facilities":"First-Aid"
+    },
+    {
+        "Type":"Neo-Natal",
+        "RegNumber":"KL20-6789",
+        "Model":"Traveller",
+        "Facilities":"Oxygen"
+    }]
+}
