@@ -3,12 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { RegistrationComponent } from './registration/registration.component';
+import { AddambulanceComponent } from './addambulance/addambulance.component';
 import { AgmCoreModule } from '@agm/core';
 import { HomePageComponent } from './home-page/home-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    RegistrationComponent,
+    AddambulanceComponent
   ],
   imports: [
     BrowserModule,
