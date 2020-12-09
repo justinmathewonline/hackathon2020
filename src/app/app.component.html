@@ -1,5 +1,27 @@
-
-
-
-
-<router-outlet></router-outlet>
+<div>    
+    <div class="div-menu">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a routerLink="/home" background-color="red" routerLinkActive="active">Home</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/registration" background-color="red" routerLinkActive="active">Vendor
+                        Registration</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/addambulance" background-color="red" routerLinkActive="active">Add New Ambulance</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/second-component" routerLinkActive="active">SignUp as User</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/second-component" routerLinkActive="active">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-app-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
