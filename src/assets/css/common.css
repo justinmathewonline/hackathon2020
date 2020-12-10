@@ -19,7 +19,7 @@
   p {
     margin: 0;
   }
-
+  
   .spacer {
     flex: 1;
   }
@@ -56,7 +56,7 @@
     padding: 0 6px;
     height: 70%;
     width: 100%;
-    background-color: #f2f7f8 ;
+    background-color:whitesmoke ;
     flex-direction: column;
     align-items: center;
   }
@@ -305,6 +305,7 @@
     height: 100%;
     width: 99%;    
     margin: 2px 2px 2px;
+    background-color: #eae5ee;
 }
 .div-table {
     display: table;         
@@ -358,8 +359,8 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: small;
     padding: 2px;
-    background-color:  #f2f7f8 ;
-    border: #136973 solid 1px;
+    background-color: whitesmoke ;
+    border: #7c0468 solid 1px;
 }
 .div-grid{
     height: 60%;
