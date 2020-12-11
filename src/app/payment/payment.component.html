@@ -1,0 +1,205 @@
+<style>* {
+    box-sizing: border-box;
+  }
+   
+  html,
+  body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+    justify-content: center;
+    align-items: center;
+  }
+  .checkout-panel {
+    display: flex;
+    flex-direction: column;
+    width: 940px;
+    height: 766px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+  }
+  .panel-body {
+    padding: 45px 80px 0;
+    flex: 1;
+  }
+   
+  .title {
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: #2e2e2e;
+  }
+  .progress-bar {
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: space-between;
+  }
+   
+  .step {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 30px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    background-color: #efefef;
+  }
+   
+  .step:after {
+    position: absolute;
+    z-index: -1;
+    top: 5px;
+    left: 22px;
+    width: 225px;
+    height: 6px;
+    content: '';
+    background-color: #efefef;
+  }
+   
+  .step:before {
+    color: #2e2e2e;
+    position: absolute;
+    top: 40px;
+  }
+   
+  .step:last-child:after {
+    content: none;
+  }
+   
+  .step.active {
+    background-color: #f62f5e;
+  }
+  .step.active:after {
+    background-color: #f62f5e;
+  }
+  .step.active:before {
+    color: #f62f5e;
+  }
+  .step.active + .step {
+    background-color: #f62f5e;
+  }
+  .step.active + .step:before {
+    color: #f62f5e;
+  }
+   
+  .step:nth-child(1):before {
+    content: 'Delivery';
+  }
+  .step:nth-child(2):before {
+    right: -40px;
+    content: 'Confirmation';
+  }
+  .step:nth-child(3):before {
+    right: -30px;
+    content: 'Payment';
+  }
+  .step:nth-child(4):before {
+    right: 0;
+    content: 'Finish';
+  }
+  .payment-method {
+    display: flex;
+    margin-bottom: 60px;
+    justify-content: space-between;
+  }
+   
+  .method {
+    display: flex;
+    flex-direction: column;
+    width: 382px;
+    height: 122px;
+    padding-top: 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: rgb(249, 249, 249);
+    justify-content: center;
+    align-items: center;
+  }
+   
+  .card-logos {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+    align-items: center;
+  }
+   
+  .radio-input {
+    margin-top: 20px;
+  }
+   
+  input[type='radio'] {
+    display: inline-block;
+  }</style>
+<div class="checkout-panel">
+    <div class="panel-body">
+      <h2 class="title">Checkout</h2>
+   
+      <div class="progress-bar">
+        <div class="step active"></div>
+        <div class="step active"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+      </div>
+   
+      <div class="payment-method">
+        <label for="card" class="method card">
+          <div class="card-logos">
+            <img src="data:image/png;base64,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"/>
+            
+          </div>
+   
+          <div class="radio-input">
+            <input id="card" type="radio" name="payment">
+            Pay $340.00 with credit card
+          </div>
+        </label>
+   
+        <label for="paypal" class="method paypal">
+          <img src="data:image/png;base64,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"/>
+          <div class="radio-input">
+            <input id="paypal" type="radio" name="payment">
+            Pay $340.00 with PayPal
+          </div>
+        </label>
+      </div>
+   
+      <div class="input-fields">
+        <div class="column-1">
+          <label for="cardholder">Cardholder's Name</label>&nbsp;
+          <input type="text" id="cardholder" />
+   
+          <div class="small-inputs">
+            <div>
+              <label for="date">Valid thru</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" id="date" placeholder="MM / YY" />
+            </div>
+   
+            <div>
+              <label for="verification">CVV / CVC *</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="password" id="verification"/>
+            </div>
+          </div>
+   
+        </div>
+        <div class="column-2">
+          <label for="cardnumber">Card Number</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="password" id="cardnumber"/>
+          
+          <span class="info">* CVV or CVC is the card security code, unique three digits number on the back of your card separate from its number.</span>
+        </div>
+      </div>
+    </div>
+   
+    <div class="panel-footer">
+      <button class="btn back-btn">Back</button>
+      <button class="btn next-btn">Next Step</button>
+    </div>
+    </div>
+  
+
