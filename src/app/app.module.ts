@@ -10,6 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AmbulancesComponent } from './ambulances/ambulances.component';
+import { LoginComponent } from './login/login.component';
+import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
@@ -17,8 +19,11 @@ import { PaymentComponent } from './payment/payment.component';
     AppComponent,
     HomePageComponent,
     RegistrationComponent,
-    AddambulanceComponent,    
-    AmbulancesComponent, PaymentComponent
+    AddambulanceComponent,
+    AmbulancesComponent,
+    LoginComponent,
+    BookambulanceComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

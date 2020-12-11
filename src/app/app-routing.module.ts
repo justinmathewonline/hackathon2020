@@ -4,6 +4,8 @@ import { AddambulanceComponent } from '../app/addambulance/addambulance.componen
 import { RegistrationComponent } from '../app/registration/registration.component';
 import { HomePageComponent } from '../app/home-page/home-page.component';
 import { AmbulancesComponent } from '../app/ambulances/ambulances.component';
+import { LoginComponent } from './login/login.component';
+import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent} from '../app/payment/payment.component';
 
 const routes: Routes = [
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'ambulances', component: AmbulancesComponent },
   { path: 'addambulance', component: AddambulanceComponent },
+  { path: 'login', component:LoginComponent },
+  { path: 'bookambulance', component:BookambulanceComponent },
   { path: 'payment', component: PaymentComponent }
 ];
 
