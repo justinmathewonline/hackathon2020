@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   json_server_url: 'http://localhost:3000/',
 
-  getambulance:"ambulances"
+  getambulance:"ambulances",
+  getAvailableAmbulances:"availableAmbulances"
 
 };
 

@@ -15,4 +15,8 @@ export class AmbulancesService {
     this.url= environment.json_server_url + environment.getambulance;
     return this.http.get<string[]>(this.url);
   }
+  getAvailableAmbulances():Observable<string[]>{
+    this.url= environment.json_server_url + environment.getAvailableAmbulances;
+    return this.http.get<string[]>(this.url);
+  }
 }

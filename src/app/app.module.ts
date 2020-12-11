@@ -24,7 +24,8 @@ import { PaymentComponent } from './payment/payment.component';
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBmP5kojmOyKmUmh6dKMfc8L-lPMUWI0S8'
+      apiKey: 'AIzaSyAvT-6cB1lqF13MYUk0-qk-915Csu_4b1o',
+      libraries: ['places']
     }),
     HttpClientModule,
   ],

@@ -103,7 +103,7 @@
 
   .card.card-small {
     height: 16px;
-    width: 168px;
+    width: 100%;
   }
 
   .card-container .card:not(.highlight-card) {
@@ -120,11 +120,11 @@
   }
 
   .card.highlight-card {
-    background-color: #1976d2;
+    background-color: #4a68bd;
     color: white;
     font-weight: 600;
     border: none;
-    width: auto;
+    width: 100%;
     min-width: 30%;
     position: relative;
   }
@@ -349,7 +349,8 @@ header{
   
   
   agm-map {
-      height: 600px;
+      height: 500px;
+      width: 100%;
   }
 .div-app-content{
     height: 100%;
@@ -381,4 +382,53 @@ th {
 img {
   width: 100%;
   height: auto;
+}
+.font-style{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+}
+.btn-style{
+  padding: 5px 7px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  background-color: #4a68bd;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px #999;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  margin: 2px;
+  color: white;
+  width: 60%;  
+}
+.btn-style:hover {
+  background-color: #7a45a5}
+
+.btn-style:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button {
+  padding: 5px 7px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  background-color: #4a68bd;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px #999;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  margin: 2px;
+  color: white;
+  width: 96%; 
+}
+
+.button:hover {
+  background-color: #7a45a5}
+
+.button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

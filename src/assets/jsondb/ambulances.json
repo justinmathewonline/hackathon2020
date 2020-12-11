@@ -14,5 +14,27 @@
         "RegNumber":"KL20-6789",
         "Model":"Traveller",
         "Facilities":"Oxygen"
-    }]
+    }],
+    "availableAmbulances":[{
+        "VenderId":"1",
+        "AmbulanceId":"1",
+        "Latitude":"8.5778907",
+        "Longitude":"76.8890768",
+        "Label":"Kazhakoottam"
+    },
+    {
+        "VenderId":"1",
+        "AmbulanceId":"2",
+        "Latitude":"8.5046890",
+        "Longitude":"76.899999",
+        "Label":"Veli"
+    },
+    {
+        "VenderId":"1",
+        "AmbulanceId":"3",
+        "Latitude":"8.5046891",
+        "Longitude":"76.899596",
+        "Label":"Veli"
+    }
+]
 }
