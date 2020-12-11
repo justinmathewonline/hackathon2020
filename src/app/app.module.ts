@@ -10,6 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AmbulancesComponent } from './ambulances/ambulances.component';
+import { LoginComponent } from './login/login.component';
+import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { AmbulancesComponent } from './ambulances/ambulances.component';
     HomePageComponent,
     RegistrationComponent,
     AddambulanceComponent,    
-    AmbulancesComponent
+    AmbulancesComponent, LoginComponent, BookambulanceComponent
   ],
   imports: [
     BrowserModule,
