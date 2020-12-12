@@ -6,21 +6,18 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AmbulancesService {
+export class RegistrationService {
 
+  
   constructor(private http: HttpClient) { }
   private url: string;
 
-  getAmbulances(): Observable<string[]>{
-    this.url= environment.json_server_url + environment.ambulance;
+  getVendors(): Observable<string[]>{
+    this.url= environment.json_server_url + environment.vendors;
     return this.http.get<string[]>(this.url);
   }
-  getAvailableAmbulances():Observable<string[]>{
-    this.url= environment.json_server_url + environment.availableAmbulances;
-    return this.http.get<string[]>(this.url);
-  }
-
-  addAmbulance(args){
+  
+  addVendor(args){
     const body = JSON.stringify(args);
     const header = {     
       'Content-Type': 'application/json'
@@ -29,7 +26,7 @@ export class AmbulancesService {
       method: 'POST',
       headers: new HttpHeaders(header)
     };
-    this.url = environment.json_server_url + environment.ambulance;
+    this.url = environment.json_server_url + environment.vendors;
     return this.http.post(this.url, body, options);
   }
 }

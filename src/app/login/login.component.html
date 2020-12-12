@@ -1,31 +1,40 @@
-<h2 style="text-align: center;color: firebrick;">Finsure Ambulance</h2>
-
-<div style="text-align: center; padding:40px;">
-    <!-- <table>
-    <tr style="">
-        <img src="assets/images.png">
-    </tr>
-</table> -->
-<div>
-    <label>Username</label>
-    &nbsp;
-    <input type="text"/>
+<div class="content">
+    <div class="divtable" style="width: 28%;align-items: center;">
+        <form [formGroup]="form" (ngSubmit)="login()">
+            <div class="table">
+                <div class="row">
+                    <div class="card highlight-card card-small">
+                        Login
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>User Name:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" formControlName="userName" id="userName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Password:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="password" formControlName="password" id="password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="submit" id="btnSubmit" class="btn-style">Login</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" id="btnCancel" class="btn-style" (click)="onCancel()">Cancel</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" id="btnSignUp" class="btn-style" (click)="signUp()">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<br>
-<div>
-    <label>Password</label>
-    &nbsp;
-    <input type="password"/>
-</div>
-<br>
-<div style="padding:20px;">
-    <button>
-        <span></span>
-        Login
-    </button>
-    &nbsp;
-    <button>Cancel</button>
-</div>
-</div>
-
-

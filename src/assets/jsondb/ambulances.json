@@ -1,40 +1,112 @@
 {
-    "ambulances": [{
-        "VendorId": "1",
-        "AmbulanceId": "1",
-        "Type":"Basic",
-        "RegNumber":"KL62-3188",
-        "Model":"Traveller",
-        "Facilities":"First-Aid"
+  "vendors": [
+    {
+      "id": "1",
+      "VendorId": "vkims",
+      "UserName": "Kims",
+      "Password": "Kims",
+      "Organization": "2",
+      "Name": "Kims",
+      "Address": "Trivandrum",
+      "Mobile": "8940287115",
+      "Email": "ambulances@kims.com",
+      "Subscribe": "Yes",
+      "Role": "2"
     },
     {
-        "VendorId": "1",
-        "AmbulanceId": "2",
-        "Type":"Neonatal",
-        "RegNumber":"KL20-6789",
-        "Model":"Traveller",
-        "Facilities":"Oxygen"
-    }],
-    "availableAmbulances":[{
-        "VenderId":"1",
-        "AmbulanceId":"1",
-        "Latitude":"8.5778907",
-        "Longitude":"76.8890768",
-        "Label":"Kazhakoottam"
+      "id": "2",
+      "VendorId": "vDivya",
+      "UserName": "Divya",
+      "Password": "Divya",
+      "Organization": "1",
+      "Name": "Divya J",
+      "Address": "Trivandrum",
+      "Mobile": "9605382448",
+      "Email": "divya@gmail.com",
+      "Subscribe": "Yes",
+      "Role": "3"
     },
     {
-        "VenderId":"1",
-        "AmbulanceId":"2",
-        "Latitude":"8.5046890",
-        "Longitude":"76.899999",
-        "Label":"Veli"
+      "id": "3",
+      "VendorId": "vTSC",
+      "UserName": "tsc",
+      "Password": "tsc",
+      "Organization": "2",
+      "Name": "TSC",
+      "Address": "NH 47",
+      "Mobile": "98210823918",
+      "Email": "tsc@tsc.com",
+      "Subscribe": "Yes",
+      "Role": "2"
     },
     {
-        "VenderId":"1",
-        "AmbulanceId":"3",
-        "Latitude":"8.5046891",
-        "Longitude":"76.899596",
-        "Label":"Veli"
+      "id": "4",
+      "VendorId": "vMark",
+      "UserName": "Mark",
+      "Password": "mark",
+      "Organization": "4",
+      "Name": "Mark",
+      "Address": "te",
+      "Mobile": "563453456",
+      "Email": "mark@test.com",
+      "Subscribe": "Yes",
+      "Role": "3"
+    },
+    [
+      {
+        "id": "vKarunya",
+        "VendorId": "vKarunya",
+        "UserName": "Karunya",
+        "Password": "Karunya",
+        "Organization": "3",
+        "Name": "Karunya",
+        "Address": "TVM",
+        "Mobile": "4646457547",
+        "Email": "karunya@test.com",
+        "Subscribe": "No",
+        "Role": "2"
+      }
+    ]
+  ],
+  "ambulances": [
+    {
+      "VendorId": "1",
+      "AmbulanceId": "1",
+      "Type": "Basic",
+      "RegNumber": "KL62-3188",
+      "Model": "Traveller",
+      "Facilities": "First-Aid"
+    },
+    {
+      "VendorId": "1",
+      "AmbulanceId": "2",
+      "Type": "Neonatal",
+      "RegNumber": "KL20-6789",
+      "Model": "Traveller",
+      "Facilities": "Oxygen"
     }
-]
+  ],
+  "availableAmbulances": [
+    {
+      "VenderId": "1",
+      "AmbulanceId": "1",
+      "Latitude": "8.5778907",
+      "Longitude": "76.8890768",
+      "Label": "Kazhakoottam"
+    },
+    {
+      "VenderId": "1",
+      "AmbulanceId": "2",
+      "Latitude": "8.5046890",
+      "Longitude": "76.899999",
+      "Label": "Veli"
+    },
+    {
+      "VenderId": "1",
+      "AmbulanceId": "3",
+      "Latitude": "8.5046891",
+      "Longitude": "76.899596",
+      "Label": "Veli"
+    }
+  ]
 }

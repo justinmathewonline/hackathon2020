@@ -1,35 +1,37 @@
 <div class="content" role="main">
   <div class="table">
     <div class="row">
-      <div class="col-sm-3">
-        <div class="card highlight-card card-small">
-          Quick Request
-        </div>
-        <div class="table">
-          <div class="row">
-            <div class="col-sm-6 font-style">
-              Source location:
-            </div>
-            <div class="col-sm-4">
-              <input type="text" id="txtSourceLocation">
-            </div>
+      <div class="col-sm-4">
+        <div class="divtable">
+          <div class="card highlight-card card-small">
+            Quick Request
           </div>
-          <div class="row">
-            <div class="col-sm-6 font-style">
-              Phone number:
+          <div class="table">
+            <div class="row">
+              <div class="col-sm-3 font-style">
+                Source location:
+              </div>
+              <div class="col-sm-1">
+                <input type="text" id="txtSourceLocation">
+              </div>
             </div>
-            <div class="col-sm-4">
-              <input type="text" id="txtPhoneNumber">
+            <div class="row">
+              <div class="col-sm-3 font-style">
+                Phone number:
+              </div>
+              <div class="col-sm-1">
+                <input type="text" id="txtPhoneNumber">
+              </div>
             </div>
-          </div>
-          <div class="row" style="align-items: center;">
-            <div class="col-sm-12">
-              <button class="btn-style">Call Ambulance</button>
+            <div class="row" style="align-items: center;">
+              <div class="col-sm-8">
+                <button class="btn-style">Call Ambulance</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-6">
         <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
           <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude" [longitude]="marker.Longitude">
             <agm-info-window #infoWindow>

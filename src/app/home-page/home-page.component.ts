@@ -30,7 +30,7 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/registration']);
   }
   onClickLogin() {
-    //this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
 

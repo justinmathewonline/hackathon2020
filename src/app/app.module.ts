@@ -13,6 +13,7 @@ import { AmbulancesComponent } from './ambulances/ambulances.component';
 import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,8 @@ import { PaymentComponent } from './payment/payment.component';
       libraries: ['places']
     }),
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

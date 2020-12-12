@@ -1,86 +1,91 @@
 <div class="content">
-    <div>
-        Vendor Registration
-    </div>
     <div class="divtable">
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="username">User Name: </label>
+        <form [formGroup]="form" (ngSubmit)="onRegister()">
+            <div class="card highlight-card card-small">
+                Vendor Registration
             </div>
-            <div class="col-sm-2">
-                <input type="text" id="username">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="username">User Name: </label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="userName" type="text" id="userName">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="password">Password: </label>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="password">Password: </label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="password" type="password" id="password">
+                </div>
             </div>
-            <div class="col-sm-2">
-                <input type="text" id="password">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="organization">Organization: </label>
+                </div>
+                <div class="col-sm-2">
+                    <select formControlName="organization" class="option" name="organization" id="organization"
+                        style="width: 185px;">
+                        <option value="0" (selected)= "true">--Select--</option>
+                        <option value="1">Individual</option>
+                        <option value="2">Hospital</option>
+                        <option value="3">Agency</option>
+                        <option value="4">Ambulance Driver</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="organization">Organization: </label>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="name">Name: </label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="name" type="text" id="name">
+                </div>
             </div>
-            <div class="col-sm-2">
-                <select class="option" name="organization" id="organization">
-                    <option value="0">--Select--</option>
-                    <option value="individual">Individual</option>
-                    <option value="hospital">Hospital</option>
-                    <option value="agency">Agency</option>
-                    <option value="driver">Ambulance Driver</option>
-                </select>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="address">Address: </label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="address" type="textarea" id="address">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="name">Name: </label>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="mobile">Mobile Number:</label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="mobile" type="text" id="mobile">
+                </div>
             </div>
-            <div class="col-sm-2">
-                <input type="text" id="name">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="email">Email Id: </label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="email" type="text" id="email">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="address">Address: </label>
+            <div class="row">
+                <div class="col-sm-2">
+                    <input formControlName="freeRegister" type="checkbox" id="freeRegister" (change)="onCheckChange('F')">
+                    <label for="freeregister">Free for 1 month</label>
+                </div>
+                <div class="col-sm-2">
+                    <input formControlName="subscribe" type="checkbox" id="subscribe" (change)="onCheckChange('S')">
+                    <label for="subscribe">Subscribe with $20.00</label>
+                </div>
             </div>
-            <div class="col-sm-2">
-                <input type="textarea" id="address">
+            <div class="row">
+                <div class="col-sm-2">
+                    <button type="submit" id="btnSubmit" class="btn-style">Register</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" id="btnCancel" class="btn-style"
+                        (click)="onCancel()">Cancel</button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="mobile">Mobile Number:</label>
-            </div>
-            <div class="col-sm-2">
-                <input type="text" id="mobile">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="email">Email: </label>
-            </div>
-            <div class="col-sm-2">
-                <input type="text" id="email">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <input type="checkbox" id="freeregister">
-                <label for="freeregister">Free registration for 1 month</label>
-            </div>
-            <div class="col-sm-6">
-                <input type="checkbox" id="subscribe">
-                <label for="subscribe">Subscribe with $1.00</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <button type="submit" id="btnSubmit">Register</button></div>
-            <div class="col-sm-2">
-                <button type="button" id="btnCancel">Cancel</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
