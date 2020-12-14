@@ -7,6 +7,9 @@ import { AmbulancesComponent } from '../app/ambulances/ambulances.component';
 import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent} from '../app/payment/payment.component';
+import { UserComponent } from './user/user.component';
+import { SubscribeComponent } from './subscribe/subscribe.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,7 +19,9 @@ const routes: Routes = [
   { path: 'addambulance', component: AddambulanceComponent },
   { path: 'login', component:LoginComponent },
   { path: 'bookambulance', component:BookambulanceComponent },
-  { path: 'payment', component: PaymentComponent }
+  { path: 'payment', component: PaymentComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'subscribe', component:SubscribeComponent  }
 ];
 
 @NgModule({
