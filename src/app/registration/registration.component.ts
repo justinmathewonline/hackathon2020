@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RegistrationService } from '../registration/service/registration.service';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -28,6 +29,11 @@ export class RegistrationComponent implements OnInit {
   onCancel() {
     this.router.navigate(['/home']);
   }
+  onClickregister() {​​
+
+    this.router.navigate(['/subscribe']);
+
+  }​​
   onCheckChange(type: any) {
     if (type === 'F') {
       this.form.controls.subscribe.setValue(false);
@@ -53,7 +59,7 @@ export class RegistrationComponent implements OnInit {
     }];
     this.service.addVendor(args).subscribe();
     if(this.form.controls.subscribe.value === true){
-      this.router.navigate(['/payment']);
+      this.router.navigate(['/subscribe']);
     }
   }
 

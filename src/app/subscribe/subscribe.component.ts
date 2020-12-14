@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {​​ AmbulancesService }​​ from '../ambulances/service/ambulances.service';
+
+import {​​ Router }​​ from '@angular/router';
 
 @Component({
   selector: 'app-subscribe',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscribeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AmbulancesService, private router: Router) {​​ }​​
 
   ngOnInit(): void {
+    
+    }
+    onClickpay() {​​
+
+      this.router.navigate(['/payment']);
+  
+    }​​
   }
 
-}
+
