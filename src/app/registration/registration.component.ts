@@ -2,15 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RegistrationService } from '../registration/service/registration.service';
+<<<<<<< HEAD
 
 
+=======
+ 
+>>>>>>> f9ec77942bdb01d3f54dac0bd2985f8cbbdc0120
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
+ 
   constructor(private router: Router, private service: RegistrationService) { }
   public form = new FormGroup({
     userName: new FormControl(''),
@@ -25,15 +29,23 @@ export class RegistrationComponent implements OnInit {
   });
   ngOnInit(): void {
   }
-
+ 
   onCancel() {
     this.router.navigate(['/home']);
   }
+<<<<<<< HEAD
   onClickregister() {​​
 
     this.router.navigate(['/subscribe']);
 
   }​​
+=======
+  onClickregister() {
+ 
+    this.router.navigate(['/subscribe']);
+ 
+  }
+>>>>>>> f9ec77942bdb01d3f54dac0bd2985f8cbbdc0120
   onCheckChange(type: any) {
     if (type === 'F') {
       this.form.controls.subscribe.setValue(false);
@@ -42,7 +54,7 @@ export class RegistrationComponent implements OnInit {
       this.form.controls.freeRegister.setValue(false);
     }
   }
-
+ 
   onRegister() {
     const args = [{
       id: "v" + this.form.controls["name"].value,
@@ -62,5 +74,5 @@ export class RegistrationComponent implements OnInit {
       this.router.navigate(['/subscribe']);
     }
   }
-
+ 
 }
