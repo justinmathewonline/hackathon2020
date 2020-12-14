@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DriverhomeComponent } from './driverhome/driverhome.component';
+import { CompletedtripsComponent } from './completedtrips/completedtrips.component';
+import { DriverdashboardComponent } from './driverdashboard/driverdashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AmbulancesComponent,
     LoginComponent,
     BookambulanceComponent,
-    PaymentComponent
+    PaymentComponent,
+    DriverhomeComponent,
+    CompletedtripsComponent,
+    DriverdashboardComponent
   ],
   imports: [
     BrowserModule,

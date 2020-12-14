@@ -7,6 +7,9 @@ import { AmbulancesComponent } from '../app/ambulances/ambulances.component';
 import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent} from '../app/payment/payment.component';
+import { DriverhomeComponent } from './driverhome/driverhome.component';
+import { CompletedtripsComponent } from './completedtrips/completedtrips.component';
+import { DriverdashboardComponent } from './driverdashboard/driverdashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,7 +19,10 @@ const routes: Routes = [
   { path: 'addambulance', component: AddambulanceComponent },
   { path: 'login', component:LoginComponent },
   { path: 'bookambulance', component:BookambulanceComponent },
-  { path: 'payment', component: PaymentComponent }
+  { path: 'payment', component: PaymentComponent },
+  { path: 'driverhome', component: DriverhomeComponent },
+  { path: 'completedtrips', component: CompletedtripsComponent},
+  { path: 'driverdashboard', component: DriverdashboardComponent}
 ];
 
 @NgModule({
