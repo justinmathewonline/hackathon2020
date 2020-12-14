@@ -6,7 +6,8 @@ import { HomePageComponent } from '../app/home-page/home-page.component';
 import { AmbulancesComponent } from '../app/ambulances/ambulances.component';
 import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
-import { PaymentComponent} from '../app/payment/payment.component';
+import { PaymentComponent } from '../app/payment/payment.component';
+import { ProfileComponent } from '../app/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,9 +15,10 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'ambulances', component: AmbulancesComponent },
   { path: 'addambulance', component: AddambulanceComponent },
-  { path: 'login', component:LoginComponent },
-  { path: 'bookambulance', component:BookambulanceComponent },
-  { path: 'payment', component: PaymentComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'bookambulance', component: BookambulanceComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({

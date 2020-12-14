@@ -12,12 +12,19 @@ export class HomePageComponent implements OnInit {
   lat = 8.5046;
   lng = 76.899999;
   zoom = 11;
+  public isUserLoggedIn: boolean = false;
 
   constructor(private service: AmbulancesService, private router: Router) { }
 
   availableAmb: string[];
 
   ngOnInit(): void {
+    if (localStorage.getItem("isUserLoggedIn") === undefined) {
+      localStorage.setItem("isUserLoggedIn", this.isUserLoggedIn.toString());
+    }
+    else{
+      this.isUserLoggedIn = localStorage.getItem("isUserLoggedIn").toString() === "true" ? true : false;
+    }
     this.getAvailableAmbulances();
   }
 

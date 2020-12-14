@@ -1,0 +1,24 @@
+<ng-contatiner *ngIf="isUserLoggedIn">
+    <div class="div-menu">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a routerLink="/home" background-color="red" routerLinkActive="active">Home</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/profile" background-color="red" routerLinkActive="active">Profile</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/ambulances" background-color="red" routerLinkActive="active"
+                        *ngIf="role !== '1'">Ambulances</a>
+                </div>
+                <div class="col-sm-2">
+                    <a routerLink="/bookambulance" routerLinkActive="active" *ngIf="role === '1'">Book Ambulance</a>
+                </div>
+                <div class="col-sm-2">
+                    <a (click)="logout()" routerLinkActive="active">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-contatiner>
