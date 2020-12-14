@@ -15,7 +15,7 @@ export class DriverhomeComponent implements OnInit {
   zoom = 11;
 
  constructor(private service: AmbulancesService, private router: Router) { }
- availableAmb: string[];
+availableAmb: string[];
   ngOnInit(): void {
   }
   onClickLogins() {

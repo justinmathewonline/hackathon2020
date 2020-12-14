@@ -74,12 +74,12 @@
                 </div>
                 <div class="col-sm-2">
                     <input formControlName="subscribe" type="checkbox" id="subscribe" (change)="onCheckChange('S')">
-                    <label for="subscribe">Subscribe with $20.00</label>
+                    <label for="subscribe">Subscribe a Plan</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-2">
-                    <button type="submit" id="btnSubmit" class="btn-style">Register</button>
+                    <button type="submit" id="btnSubmit" class="btn-style" (click)="onClickregister()">Register</button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" id="btnCancel" class="btn-style"

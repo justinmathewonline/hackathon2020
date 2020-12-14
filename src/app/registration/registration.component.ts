@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RegistrationService } from '../registration/service/registration.service';
-
+ 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
+ 
   constructor(private router: Router, private service: RegistrationService) { }
   public form = new FormGroup({
     userName: new FormControl(''),
@@ -24,9 +24,14 @@ export class RegistrationComponent implements OnInit {
   });
   ngOnInit(): void {
   }
-
+ 
   onCancel() {
     this.router.navigate(['/home']);
+  }
+  onClickregister() {
+ 
+    this.router.navigate(['/subscribe']);
+ 
   }
   onCheckChange(type: any) {
     if (type === 'F') {
@@ -36,7 +41,7 @@ export class RegistrationComponent implements OnInit {
       this.form.controls.freeRegister.setValue(false);
     }
   }
-
+ 
   onRegister() {
     const args = [{
       id: "v" + this.form.controls["name"].value,
@@ -53,8 +58,8 @@ export class RegistrationComponent implements OnInit {
     }];
     this.service.addVendor(args).subscribe();
     if(this.form.controls.subscribe.value === true){
-      this.router.navigate(['/payment']);
+      this.router.navigate(['/subscribe']);
     }
   }
-
+ 
 }
