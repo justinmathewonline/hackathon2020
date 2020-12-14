@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  public form= new FormGroup({
+  public form = new FormGroup({
     userName: new FormControl(''),
     password: new FormControl('')
   })
@@ -26,5 +26,14 @@ export class LoginComponent implements OnInit {
   }
   login() {
 
+  }
+  authenticate() {
+    // const { username, password } = body;
+    // const user = users.find(x => x.username === username && x.password === password);
+    // if (!user) return error('Username or password is incorrect');
+    // return ok({
+    //     ...basicDetails(user),
+    //     token: 'fake-jwt-token'
+    // })
   }
 }
