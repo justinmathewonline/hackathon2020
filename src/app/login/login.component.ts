@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RegistrationService } from '../registration/service/registration.service';
-import { Users } from '../Users';
+import { Users } from '../models/Users';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       else if(user !== undefined){
         localStorage.setItem("isUserLoggedIn", "true");
         localStorage.setItem("role",user.Role);
+        localStorage.setItem("vendorId", user.VendorId);
         this.router.navigate(['/profile']);
       }
     });

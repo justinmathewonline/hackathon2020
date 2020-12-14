@@ -9,11 +9,11 @@ import {Router} from '@angular/router';
 export class MenuComponent implements OnInit {
 
   constructor(private router: Router) { }
-  public role: string;  
+  public userRole: string;  
   public isUserLoggedIn: boolean;
   ngOnInit(): void {
     this.isUserLoggedIn = localStorage.getItem("isUserLoggedIn").toString() === "true" ? true : false;
-    this.role =  localStorage.getItem("role");
+    this.userRole =  localStorage.getItem("role");
   }
   logout(){
     localStorage.setItem("isUserLoggedIn", "false");

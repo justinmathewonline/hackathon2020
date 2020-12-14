@@ -16,6 +16,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { UserComponent } from './user/user.component';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MenuComponent } from './shared/menu/menu.component';
     AmbulancesComponent,
     LoginComponent,
     BookambulanceComponent,
-    PaymentComponent,
+    PaymentComponent,   
+    UserComponent,
+    SubscribeComponent,
     ProfileComponent,
     MenuComponent
   ],

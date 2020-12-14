@@ -10,10 +10,16 @@
                 </div>
                 <div class="col-sm-2">
                     <a routerLink="/ambulances" background-color="red" routerLinkActive="active"
-                        *ngIf="role !== '1'">Ambulances</a>
+                        *ngIf="userRole !== '1'">Ambulances</a>
                 </div>
                 <div class="col-sm-2">
-                    <a routerLink="/bookambulance" routerLinkActive="active" *ngIf="role === '1'">Book Ambulance</a>
+                    <a routerLink="/bookambulance" routerLinkActive="active" *ngIf="userRole === '1'">Book Ambulance</a>
+                </div>
+                <div class="col-sm-2">                
+                    <a routerLink="/user" routerLinkActive="active">user</a>                 
+                </div>
+                <div class="col-sm-2">                
+                    <a routerLink="/subscribe" routerLinkActive="active">plan</a>                 
                 </div>
                 <div class="col-sm-2">
                     <a (click)="logout()" routerLinkActive="active">Logout</a>

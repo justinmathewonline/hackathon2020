@@ -6,7 +6,9 @@ import { HomePageComponent } from '../app/home-page/home-page.component';
 import { AmbulancesComponent } from '../app/ambulances/ambulances.component';
 import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
-import { PaymentComponent } from '../app/payment/payment.component';
+import { PaymentComponent} from '../app/payment/payment.component';
+import { UserComponent } from './user/user.component';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 import { ProfileComponent } from '../app/profile/profile.component';
 
 const routes: Routes = [
@@ -15,9 +17,11 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'ambulances', component: AmbulancesComponent },
   { path: 'addambulance', component: AddambulanceComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'bookambulance', component: BookambulanceComponent },
+  { path: 'login', component:LoginComponent },
+  { path: 'bookambulance', component:BookambulanceComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'subscribe', component:SubscribeComponent },
   { path: 'profile', component: ProfileComponent }
 ];
 
