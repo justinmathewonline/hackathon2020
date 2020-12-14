@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AmbulancesService } from '../ambulances/service/ambulances.service';
 import { Ambulances } from '../models/Ambulances';
-import { MapsAPILoader } from '@agm/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +11,7 @@ import { MapsAPILoader } from '@agm/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private service: AmbulancesService) { }
+  constructor(private service: AmbulancesService, private router: Router) { }
   public userRole: string;
   private ambulanceList: Ambulances[];
   public driverForm = new FormGroup({
@@ -52,8 +52,7 @@ export class ProfileComponent implements OnInit {
         // this.service.goOnline(args).subscribe();
       });
     }
-
-
+    this.router.navigate(['driverhome']);
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {

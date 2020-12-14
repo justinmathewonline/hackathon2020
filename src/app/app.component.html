@@ -1,29 +1,32 @@
 <div>
-    <!-- <div class="div-menu">
+    <div class="div-menu">
         <div class="table">
             <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     <a routerLink="/home" background-color="red" routerLinkActive="active">Home</a>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     <a routerLink="/ambulances" background-color="red" routerLinkActive="active">Ambulances</a>
                 </div>
                 <div class="col-sm-2">
                     <a routerLink="/bookambulance" routerLinkActive="active">Book Ambulance</a>
                 </div>
                 <div class="col-sm-2">
-                    <a routerLink="/payment" routerLinkActive="active">Payment</a>
+                    <a routerLink="/driverdashboard" routerLinkActive="active">Driver DashBoard</a>
                 </div>
-                <div class="col-sm-2">                
+                <div class="col-sm-1">                
                     <a routerLink="/user" routerLinkActive="active">user</a>                 
                 </div>
-                <div class="col-sm-2">                
+                <div class="col-sm-1">                
                     <a routerLink="/subscribe" routerLinkActive="active">plan</a>                 
                 </div>
-            </div>            
+                <div class="col-sm-1">
+                    <a routerLink="/home" (click)="logout()" routerLinkActive="active">Logout</a>
+                </div>
+            </div>              
         </div>
-    </div> -->    
-    <app-menu></app-menu>    
+    </div>
+    <!-- <app-menu></app-menu> -->
     <div class="div-app-content">
         <router-outlet></router-outlet>
     </div>

@@ -1,0 +1,40 @@
+<div class="content" role="main">
+    <div class="table">
+        <div class="row">
+            <div class="alert alert-success">
+                <strong>Emergency:</strong> A new request awaits your confirmation
+            </div>
+            <div>
+                <button type="button" style="padding: 3px 3px;font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                border: 2px solid blue;
+                cursor: pointer;">ACCEPT</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="div-grid">
+                    <table class="table">
+                        <thead class="black white-text">
+                            <tr>
+                                <th scope="col">Patient Contact Number</th>
+                                <th scope="col">Location</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
+                    <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude"
+                        [longitude]="marker.Longitude">
+                        <agm-info-window #infoWindow>
+                            {{ marker.Label }}
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
+    </div>
+</div>

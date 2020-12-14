@@ -32,6 +32,7 @@
         </div>
       </div>
       <div class="col-sm-6">
+        <!-- <app-map></app-map> -->
         <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
           <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude" [longitude]="marker.Longitude">
             <agm-info-window #infoWindow>

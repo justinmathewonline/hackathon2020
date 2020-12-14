@@ -16,8 +16,12 @@ import { PaymentComponent } from './payment/payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { DriverhomeComponent } from './driverhome/driverhome.component';
+import { CompletedtripsComponent } from './completedtrips/completedtrips.component';
+import { DriverdashboardComponent } from './driverdashboard/driverdashboard.component';
 import { UserComponent } from './user/user.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +32,15 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
     AmbulancesComponent,
     LoginComponent,
     BookambulanceComponent,
-    PaymentComponent,   
+    PaymentComponent,
+    DriverhomeComponent,
+    CompletedtripsComponent,
+    DriverdashboardComponent,
     UserComponent,
     SubscribeComponent,
     ProfileComponent,
-    MenuComponent
+    MenuComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

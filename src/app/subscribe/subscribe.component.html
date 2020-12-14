@@ -1,14 +1,35 @@
 <!-- Contenedor -->
 <div class="pricing-wrapper clearfix">
-    <!-- Titulo -->
-    <h1 class="pricing-table-title">Select a subscription plan <a href=""></a></h1>
+  <!-- Titulo -->
+  <h1 class="pricing-table-title">Select a subscription plan <a href=""></a></h1>
 
-    <div class="pricing-table">
-      <h3 class="pricing-title">Basic</h3>
-      <div class="price">$60<sup>/month</sup></div>
+  <div class="pricing-table">
+    <h3 class="pricing-title">Basic</h3>
+    <div class="price">$10<sup>/month</sup></div>
+    <!-- Lista de Caracteristicas / Propiedades -->
+    <ul class="table-list">
+      <li> monthly once <span>free pickup and drop</span></li>
+      <!--
+      <li>1 Dominio <span>incluido</span></li>
+      <li>25 GB <span>De transferencia mensual</span></li>
+      <li>Base de datos <span class="unlimited">ilimitadas</span></li>
+      <li>Cuentas de correo <span class="unlimited">ilimitadas</span></li>
+      <li>CPanel <span>incluido</span></li>
+      -->
+    </ul>
+    <!-- Contratar / Comprar -->
+    <div class="table-buy">
+      <p>$10<sup>/ month</sup></p>
+      <a  class="pricing-action" (click)="onClickpay()">pay</a>
+    </div>
+  </div>
+  
+  <div class="pricing-table">
+      <h3 class="pricing-title">PREMIUM</h3>
+      <div class="price">$100<sup>/month</sup></div>
       <!-- Lista de Caracteristicas / Propiedades -->
       <ul class="table-list">
-        <li> monthly once <span>free pickup and drop</span></li>
+        <li> Weekly twice <span>free pickup and drop</span></li>
         <!--
         <li>1 Dominio <span>incluido</span></li>
         <li>25 GB <span>De transferencia mensual</span></li>
@@ -19,49 +40,28 @@
       </ul>
       <!-- Contratar / Comprar -->
       <div class="table-buy">
-        <p>$60<sup>/ month</sup></p>
-        <a href="#" class="pricing-action">pay</a>
+        <p>$10<sup>/ month</sup></p>
+        <a  class="pricing-action" (click)="onClickpay()">pay</a>
       </div>
     </div>
-    
-    <div class="pricing-table">
-        <h3 class="pricing-title">PREMIUM</h3>
-        <div class="price">$100<sup>/month</sup></div>
-        <!-- Lista de Caracteristicas / Propiedades -->
-        <ul class="table-list">
-          <li> Weekly twice <span>free pickup and drop</span></li>
-          <!--
-          <li>1 Dominio <span>incluido</span></li>
-          <li>25 GB <span>De transferencia mensual</span></li>
-          <li>Base de datos <span class="unlimited">ilimitadas</span></li>
-          <li>Cuentas de correo <span class="unlimited">ilimitadas</span></li>
-          <li>CPanel <span>incluido</span></li>
-          -->
-        </ul>
-        <!-- Contratar / Comprar -->
-        <div class="table-buy">
-          <p>$60<sup>/ month</sup></p>
-          <a href="#" class="pricing-action">pay</a>
-        </div>
-      </div>
 
-      <div class="pricing-table">
-        <h3 class="pricing-title">Ultimate</h3>
-        <div class="price">$160<sup>/month</sup></div>
-        <!-- Lista de Caracteristicas / Propiedades -->
-        <ul class="table-list">
-          <li> daily  <span>free pickup and drop</span></li>
-          <!--
-          <li>1 Dominio <span>incluido</span></li>
-          <li>25 GB <span>De transferencia mensual</span></li>
-          <li>Base de datos <span class="unlimited">ilimitadas</span></li>
-          <li>Cuentas de correo <span class="unlimited">ilimitadas</span></li>
-          <li>CPanel <span>incluido</span></li>
-          -->
-        </ul>
-        <!-- Contratar / Comprar -->
-        <div class="table-buy">
-          <p>$60<sup>/ month</sup></p>
-          <a href="#" class="pricing-action">pay</a>
-        </div>
+    <div class="pricing-table">
+      <h3 class="pricing-title">Ultimate</h3>
+      <div class="price">$160<sup>/month</sup></div>
+      <!-- Lista de Caracteristicas / Propiedades -->
+      <ul class="table-list">
+        <li> daily  <span>free pickup and drop</span></li>
+        <!--
+        <li>1 Dominio <span>incluido</span></li>
+        <li>25 GB <span>De transferencia mensual</span></li>
+        <li>Base de datos <span class="unlimited">ilimitadas</span></li>
+        <li>Cuentas de correo <span class="unlimited">ilimitadas</span></li>
+        <li>CPanel <span>incluido</span></li>
+        -->
+      </ul>
+      <!-- Contratar / Comprar -->
+      <div class="table-buy">
+        <p>$160<sup>/ month</sup></p>
+        <a  class="pricing-action" (click)="onClickpay()">pay</a>
       </div>
+    </div>
