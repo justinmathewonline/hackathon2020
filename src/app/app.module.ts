@@ -14,8 +14,14 @@ import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
+import { DriverhomeComponent } from './driverhome/driverhome.component';
+import { CompletedtripsComponent } from './completedtrips/completedtrips.component';
+import { DriverdashboardComponent } from './driverdashboard/driverdashboard.component';
+=======
 import { UserComponent } from './user/user.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+>>>>>>> f99cab6ac0ad84535fdcfe6060dff452eec070c1
 
 @NgModule({
   declarations: [
@@ -27,8 +33,14 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
     LoginComponent,
     BookambulanceComponent,
     PaymentComponent,
+<<<<<<< HEAD
+    DriverhomeComponent,
+    CompletedtripsComponent,
+    DriverdashboardComponent
+=======
     UserComponent,
     SubscribeComponent
+>>>>>>> f99cab6ac0ad84535fdcfe6060dff452eec070c1
   ],
   imports: [
     BrowserModule,

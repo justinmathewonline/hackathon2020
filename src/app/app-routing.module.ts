@@ -7,9 +7,15 @@ import { AmbulancesComponent } from '../app/ambulances/ambulances.component';
 import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent} from '../app/payment/payment.component';
+<<<<<<< HEAD
+import { DriverhomeComponent } from './driverhome/driverhome.component';
+import { CompletedtripsComponent } from './completedtrips/completedtrips.component';
+import { DriverdashboardComponent } from './driverdashboard/driverdashboard.component';
+=======
 import { UserComponent } from './user/user.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 
+>>>>>>> f99cab6ac0ad84535fdcfe6060dff452eec070c1
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,8 +26,14 @@ const routes: Routes = [
   { path: 'login', component:LoginComponent },
   { path: 'bookambulance', component:BookambulanceComponent },
   { path: 'payment', component: PaymentComponent },
+<<<<<<< HEAD
+  { path: 'driverhome', component: DriverhomeComponent },
+  { path: 'completedtrips', component: CompletedtripsComponent},
+  { path: 'driverdashboard', component: DriverdashboardComponent}
+=======
   { path: 'user', component: UserComponent },
   { path: 'subscribe', component:SubscribeComponent  }
+>>>>>>> f99cab6ac0ad84535fdcfe6060dff452eec070c1
 ];
 
 @NgModule({
