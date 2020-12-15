@@ -24,7 +24,7 @@
       "Mobile": "9605382448",
       "Email": "divya@gmail.com",
       "Subscribe": "Yes",
-      "Role": "3"
+      "Role": "1"
     },
     {
       "id": "3",
@@ -70,7 +70,7 @@
   ],
   "ambulances": [
     {
-      "VendorId": "1",
+      "VendorId": "vkims",
       "AmbulanceId": "1",
       "Type": "Basic",
       "RegNumber": "KL62-3188",
@@ -78,7 +78,7 @@
       "Facilities": "First-Aid"
     },
     {
-      "VendorId": "1",
+      "VendorId": "vkims",
       "AmbulanceId": "2",
       "Type": "Neonatal",
       "RegNumber": "KL20-6789",
@@ -88,21 +88,21 @@
   ],
   "availableAmbulances": [
     {
-      "VenderId": "1",
+      "VenderId": "vkims",
       "AmbulanceId": "1",
       "Latitude": "8.5778907",
       "Longitude": "76.8890768",
       "Label": "Kazhakoottam"
     },
     {
-      "VenderId": "1",
+      "VenderId": "vkims",
       "AmbulanceId": "2",
       "Latitude": "8.5046890",
       "Longitude": "76.899999",
       "Label": "Veli"
     },
     {
-      "VenderId": "1",
+      "VenderId": "vkims",
       "AmbulanceId": "3",
       "Latitude": "8.5046891",
       "Longitude": "76.899596",

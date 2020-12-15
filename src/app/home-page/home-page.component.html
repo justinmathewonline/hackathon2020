@@ -32,6 +32,7 @@
         </div>
       </div>
       <div class="col-sm-6">
+        <!-- <app-map></app-map> -->
         <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
           <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude" [longitude]="marker.Longitude">
             <agm-info-window #infoWindow>
@@ -41,16 +42,18 @@
         </agm-map>
       </div>
       <div class="col-sm-2">
-        <div class="row">
-          <button type="button" class="button" (click)="onClickLogin()">
-            Login
-          </button>
-        </div>
-        <div class="row">
-          <button type="button" class="button" (click)="onClickSignUp()">
-            Sign Up
-          </button>
-        </div>
+        <ng-container *ngIf="!isUserLoggedIn">
+          <div class="row">
+            <button type="button" class="button" (click)="onClickLogin()">
+              Login
+            </button>
+          </div>
+          <div class="row">
+            <button type="button" class="button" (click)="onClickSignUp()">
+              Sign Up
+            </button>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
+import { Ambulances } from '../../models/Ambulances';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +12,18 @@ export class AmbulancesService {
   constructor(private http: HttpClient) { }
   private url: string;
 
-  getAmbulances(): Observable<string[]>{
-    this.url= environment.json_server_url + environment.ambulance;
-    return this.http.get<string[]>(this.url);
+  getAmbulances(): Observable<Ambulances[]> {
+    this.url = environment.json_server_url + environment.ambulance;
+    return this.http.get<Ambulances[]>(this.url);
   }
-  getAvailableAmbulances():Observable<string[]>{
-    this.url= environment.json_server_url + environment.availableAmbulances;
+  getAvailableAmbulances(): Observable<string[]> {
+    this.url = environment.json_server_url + environment.availableAmbulances;
     return this.http.get<string[]>(this.url);
   }
 
-  addAmbulance(args){
+  addAmbulance(args) {
     const body = JSON.stringify(args);
-    const header = {     
+    const header = {
       'Content-Type': 'application/json'
     };
     const options = {
@@ -32,4 +33,18 @@ export class AmbulancesService {
     this.url = environment.json_server_url + environment.ambulance;
     return this.http.post(this.url, body, options);
   }
+
+  goOnline(args) {
+    const body = JSON.stringify(args);
+    const header = {
+      'Content-Type': 'application/json'
+    };
+    const options = {
+      method: 'POST',
+      headers: new HttpHeaders(header)
+    };
+    this.url = environment.json_server_url + environment.availableAmbulances;
+    return this.http.post(this.url, body, options);
+  }
+
 }

@@ -1,4 +1,4 @@
-<div>
+<ng-contatiner *ngIf="isUserLoggedIn">
     <div class="div-menu">
         <div class="table">
             <div class="row">
@@ -6,13 +6,14 @@
                     <a routerLink="/home" background-color="red" routerLinkActive="active">Home</a>
                 </div>
                 <div class="col-sm-1">
-                    <a routerLink="/ambulances" background-color="red" routerLinkActive="active">Ambulances</a>
+                    <a routerLink="/profile" background-color="red" routerLinkActive="active">Profile</a>
                 </div>
-                <div class="col-sm-2">
-                    <a routerLink="/bookambulance" routerLinkActive="active">Book Ambulance</a>
+                <div class="col-sm-1">
+                    <a routerLink="/ambulances" background-color="red" routerLinkActive="active"
+                        *ngIf="userRole !== '1'">Ambulances</a>
                 </div>
-                <div class="col-sm-2">
-                    <a routerLink="/driverdashboard" routerLinkActive="active">Driver DashBoard</a>
+                <div class="col-sm-">
+                    <a routerLink="/bookambulance" routerLinkActive="active" *ngIf="userRole === '1'">Book Ambulance</a>
                 </div>
                 <div class="col-sm-1">                
                     <a routerLink="/user" routerLinkActive="active">user</a>                 
@@ -21,13 +22,9 @@
                     <a routerLink="/subscribe" routerLinkActive="active">plan</a>                 
                 </div>
                 <div class="col-sm-1">
-                    <a routerLink="/home" (click)="logout()" routerLinkActive="active">Logout</a>
+                    <a (click)="logout()" routerLinkActive="active">Logout</a>
                 </div>
-            </div>              
+            </div>
         </div>
     </div>
-    <!-- <app-menu></app-menu> -->
-    <div class="div-app-content">
-        <router-outlet></router-outlet>
-    </div>
-</div>
+</ng-contatiner>
