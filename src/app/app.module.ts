@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { BookambulanceComponent } from './bookambulance/bookambulance.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DriverHomepageComponent } from './driver-homepage/driver-homepage.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AmbulancesComponent,
     LoginComponent,
     BookambulanceComponent,
-    PaymentComponent
+    PaymentComponent,
+    DriverHomepageComponent
   ],
   imports: [
     BrowserModule,
