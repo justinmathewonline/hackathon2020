@@ -35,10 +35,10 @@ export class HomePageComponent implements OnInit {
     }
     this.createForm();
   }
-  
+
   createForm() {
     this.qkRequest = this.fb.group({
-      sourceLocation:[''],
+      sourceLocation: [''],
       phoneNumber: ['', Validators.required]
     });
   }
@@ -68,31 +68,32 @@ export class HomePageComponent implements OnInit {
     });
   }
   onClickSignUp() {
-    this.isQkRequestDone= false;
+    this.isQkRequestDone = false;
     this.router.navigate(['/registration']);
   }
   onClickLogin() {
-    this.isQkRequestDone= false;
+    this.isQkRequestDone = false;
     this.router.navigate(['/login']);
   }
   onRequest() {
     this.getCurrentLocation();
-    const args = [{
-      Source: this.qkRequest.controls["sourceLocation"].value,
-      PhoneNumber: this.qkRequest.controls["phoneNumber"].value,
-      Latitude: this.lat,
-      Longitude: this.lng,
-      IsAccepted: false,
-      VendorId:"",
-      AmbulanceId:""
-    }];
-    this.qkService.addQuickRequest(args).subscribe();
-
-    this.isQkRequestDone= true;
+    if (this.qkRequest.controls["phoneNumber"].value !== "") {
+      const args = [{
+        Source: this.qkRequest.controls["sourceLocation"].value === "" ? "Kazhakoottam" : this.qkRequest.controls["sourceLocation"].value,
+        PhoneNumber: this.qkRequest.controls["phoneNumber"].value,
+        Latitude: this.lat,
+        Longitude: this.lng,
+        IsAccepted: false,
+        VendorId: "",
+        AmbulanceId: ""
+      }];
+      this.qkService.addQuickRequest(args).subscribe();
+      this.isQkRequestDone = true;
+    }
   }
   getCurrentLocation() {
     if (navigator) {
-      if (this.qkRequest.controls["sourceLocation"].value === "") {
+      if (this.qkRequest.controls["sourceLocation"].value !== "") {
         navigator.geolocation.getCurrentPosition(pos => {
           this.lng = +pos.coords.longitude;
           this.lat = +pos.coords.latitude;
