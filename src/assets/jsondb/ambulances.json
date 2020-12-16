@@ -88,25 +88,104 @@
   ],
   "availableAmbulances": [
     {
-      "VenderId": "vkims",
+      "VendorId": "vkims",
       "AmbulanceId": "1",
-      "Latitude": "8.5778907",
-      "Longitude": "76.8890768",
+      "Latitude": "8.56789",
+      "Longitude": "77.5735168",
       "Label": "Kazhakoottam"
     },
     {
-      "VenderId": "vkims",
+      "VendorId": "vkims",
       "AmbulanceId": "2",
-      "Latitude": "8.5046890",
+      "Latitude": "8.89765",
       "Longitude": "76.899999",
       "Label": "Veli"
     },
     {
-      "VenderId": "vkims",
+      "VendorId": "vkims",
       "AmbulanceId": "3",
-      "Latitude": "8.5046891",
-      "Longitude": "76.899596",
+      "Latitude": "8.453568",
+      "Longitude": "76.899999",
       "Label": "Veli"
     }
+  ],
+  "QuickRequest": [
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "9605382448",
+        "Latitude": 12.887654399999999,
+        "Longitude": 77.5815168,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ],
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "76754325678",
+        "Latitude": 12.887654399999999,
+        "Longitude": 77.5815168,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ],
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "",
+        "Latitude": 12.887654399999999,
+        "Longitude": 77.5815168,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ],
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "",
+        "Latitude": 8.5272104,
+        "Longitude": 76.88739919999999,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ],
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "",
+        "Latitude": 12.887654399999999,
+        "Longitude": 77.5815168,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ],
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "",
+        "Latitude": 12.887654399999999,
+        "Longitude": 77.5815168,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ],
+    [
+      {
+        "Source": "",
+        "PhoneNumber": "",
+        "Latitude": 12.887654399999999,
+        "Longitude": 77.5815168,
+        "IsAccepted": false,
+        "VendorId": "",
+        "AmbulanceId": ""
+      }
+    ]
   ]
 }

@@ -8,7 +8,8 @@ export const environment = {
 
   ambulance:"ambulances",
   availableAmbulances:"availableAmbulances",
-  vendors:"vendors"
+  vendors:"vendors",
+  quickRequest:"quickRequest"
 };
 
 /*

@@ -1,26 +1,20 @@
-import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
-import { MapsAPILoader, AgmMap } from '@agm/core';
+import { Component, OnInit } from '@angular/core';
+import { AgmMap, MapsAPILoader } from '@agm/core';
+import { AmbulancesService } from '../ambulances/service/ambulances.service';
+import { AvailableAmbulances } from '../models/AvailableAmbulances';
+import { Location, Appearance, GermanAddress } from '@angular-material-extensions/google-maps-autocomplete';
 
-declare var google: any;
+import PlaceResult = google.maps.places.PlaceResult;
 
-interface Marker {
+// just an interface for type safety.
+interface marker {
   lat: number;
   lng: number;
   label?: string;
   draggable: boolean;
-}
-
-interface Location {
-  lat: number;
-  lng: number;
-  viewport?: Object;
-  zoom: number;
-  address_level_1?: string;
-  address_level_2?: string;
-  address_country?: string;
-  address_zip?: string;
-  address_state?: string;
-  marker?: Marker;
+  content?: string;
+  isShown: boolean;
+  icon: string;
 }
 
 @Component({
@@ -29,101 +23,156 @@ interface Location {
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  geocoder: any;
-  public location: Location = {
-    lat: 51.678418,
-    lng: 7.809007,
-    marker: {
-      lat: 51.678418,
-      lng: 7.809007,
-      draggable: true
-    },
-    zoom: 5
-  };
+  availableAmbs: AvailableAmbulances[];
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  address: string;
+  private geoCoder;
+  public selectedAddress: PlaceResult;
 
-  @ViewChild(AgmMap) map: AgmMap;
+  // Radius
+  radius = 5000;
+  radiusLat = 0;
+  radiusLong = 0;
 
-  constructor(public mapsApiLoader: MapsAPILoader,
-    private zone: NgZone,
-    private wrapper: MapsAPILoader) {
-    this.mapsApiLoader = mapsApiLoader;
-    this.zone = zone;
-    this.wrapper = wrapper;
-    this.mapsApiLoader.load().then(() => {
-      this.geocoder = new google.maps.Geocoder();
+  markers: marker[] = []
+
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private service: AmbulancesService
+  ) {}
+  ngOnInit(): void {
+    //load Map
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentLocation();
+    });
+  }
+  // Get Current Location Coordinates
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.radiusLat = this.latitude;
+        this.radiusLong = this.longitude;
+        this.zoom = 12;
+
+        this.mapsAPILoader.load().then(() => {  
+          let geocoder = new google.maps.Geocoder;  
+          let latlng = {  
+              lat: this.latitude,  
+              lng: this.longitude  
+          };  
+          geocoder.geocode({  
+              'location': latlng  
+          }, function(results) {  
+            console.log(results);
+              if (results[0]) {  
+                  this.currentLocation = results[0].formatted_address;  
+                  console.log(this.currentLocation);  
+                  
+              } else {  
+                  console.log('Not found');  
+              }  
+          });  
+      });
+        // for (let i = 1; i < 50; i++) {
+        //   this.markers.push(
+        //     {
+        //       lat: this.latitude + Math.random(),
+        //       lng: this.longitude + Math.random(),
+        //       label: `${i}`,
+        //       draggable: false,
+        //       content: `Content no ${i}`,
+        //       isShown: false,
+        //       icon: './assets/marker-red.png'
+        //     });
+        // }
+      });
+      this.getAvailableAmbulancesByLocation(this.latitude, this.longitude);
+    }
+  }
+  getAvailableAmbulancesByLocation(lat: any, lng: any) {
+    this.service.getAvailableAmbulancesLocation().subscribe(data => {      
+      //this.availableAmbs = data.filter(x=> x.Latitude.split(".").includes(lat.split(".")) && x.Longitude.split(".").includes(lng.split("."))); 
+      this.availableAmbs = data;  
+    });
+  }
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+
+  radiusDragEnd($event: any) {
+    console.log($event);
+    this.radiusLat = $event.coords.lat;
+    this.radiusLong = $event.coords.lng;
+    this.showHideMarkers();
+  }
+
+  event(type, $event) {
+    console.log(type, $event);
+    this.radius = $event;
+    this.showHideMarkers();
+  }
+
+  showHideMarkers() {
+    Object.values(this.markers).forEach(value => {
+      value.isShown = this.getDistanceBetween(value.lat, value.lng, this.radiusLat, this.radiusLong);
     });
   }
 
-  ngOnInit(): void {
-    this.location.marker.draggable = true;
-  }
-  updateOnMap() {
-    let full_address: string = this.location.address_level_1 || ""
-    if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
-    if (this.location.address_state) full_address = full_address + " " + this.location.address_state
-    if (this.location.address_country) full_address = full_address + " " + this.location.address_country
+  getDistanceBetween(lat1, long1, lat2, long2) {
+    var from = new google.maps.LatLng(lat1, long1);
+    var to = new google.maps.LatLng(lat2, long2);
 
-    this.findLocation(full_address);
-  }
-  findLocation(address) {
-    if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
-    this.geocoder.geocode({
-      'address': address
-    }, (results, status) => {
-      console.log(results);
-      if (status == google.maps.GeocoderStatus.OK) {
-        // decompose the result
-      } else {
-        alert("Sorry, this search produced no results.");
-      }
-    })
-  }
-  markerDragEnd(m: any, $event: any) {
-    this.location.marker.lat = m.coords.lat;
-    this.location.marker.lng = m.coords.lng;
-    this.findAddressByCoordinates();
-  }
-  findAddressByCoordinates() {
-    this.geocoder.geocode({
-      'location': {
-        lat: this.location.marker.lat,
-        lng: this.location.marker.lng
-      }
-    }, (results, status) => {
-      this.decomposeAddressComponents(results);
-    })
-  }
-  decomposeAddressComponents(addressArray) {
-    if (addressArray.length == 0) return false;
-    let address = addressArray[0].address_components;
-
-    for(let element of address) {
-      if (element.length == 0 && !element['types']) continue
-
-      if (element['types'].indexOf('street_number') > -1) {
-        this.location.address_level_1 = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('route') > -1) {
-        this.location.address_level_1 += ', ' + element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('locality') > -1) {
-        this.location.address_level_2 = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('administrative_area_level_1') > -1) {
-        this.location.address_state = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('country') > -1) {
-        this.location.address_country = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('postal_code') > -1) {
-        this.location.address_zip = element['long_name'];
-        continue;
-      }
+    if (google.maps.geometry.spherical.computeDistanceBetween(from, to) <= this.radius) {
+      console.log('Radius', this.radius);
+      console.log('Distance Between', google.maps.geometry.spherical.computeDistanceBetween(
+        from, to
+      ));
+      return true;
+    } else {
+      return false;
     }
   }
+  onAutocompleteSelected(result: PlaceResult) {
+    console.log('onAutocompleteSelected: ', result);
+  }
+
+  onLocationSelected(location: Location) {
+    console.log('onLocationSelected: ', location);
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
+  }
+
+  onGermanAddressMapped($event: GermanAddress) {
+    console.log('onGermanAddressMapped', $event);
+  }
+  mapClicked($event){
+    console.log($event);
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+  // this.getAddress(this.latitude, this.longitude);
+     
+    this.mapsAPILoader.load().then(() => {  
+        let geocoder = new google.maps.Geocoder;  
+        let latlng = {  
+            lat: this.latitude,  
+            lng: this.longitude  
+        };  
+        geocoder.geocode({  
+            'location': latlng  
+        }, function(results) {  
+            if (results[0]) {  
+                this.currentLocation = results[0].formatted_address;  
+                console.log(this.currentLocation);  
+            } else {  
+                console.log('Not found');  
+            }  
+        });  
+    });  
+
+  }
+
 }

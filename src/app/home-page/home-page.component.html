@@ -1,47 +1,58 @@
-<div class="content" role="main">
-  <div class="table">
+<div class="content">
+  <div class="table" style="width: 99%;">
     <div class="row">
-      <div class="col-sm-4">
-        <div class="divtable">
-          <div class="card highlight-card card-small">
-            Quick Request
-          </div>
+      <div class="col-sm-4 divTableBack">
+        <form [formGroup]="qkRequest" (ngSubmit)="onRequest()">
           <div class="table">
-            <div class="row">
-              <div class="col-sm-3 font-style">
-                Source location:
+            <div class="card-div card-highlight card-small">
+              Quick Request
+            </div>
+            <div class="table">
+              <div class="row" style="margin: 5px 0 0;">
+                <div class="col-sm-4 font-style">
+                  Source Location:
+                </div>
+                <div class="col-sm-2">
+                  <input formControlName="sourceLocation" type="text" id="txtSourceLocation">
+                </div>
               </div>
-              <div class="col-sm-1">
-                <input type="text" id="txtSourceLocation">
+              <div class="row" style="margin: 5px 0 0; align-items: center;">
+                <div class="col-sm-4 font-style">
+                  Phone Number:
+                </div>
+                <div class="col-sm-2">
+                  <input formControlName="phoneNumber" type="text" id="txtPhoneNumber" ngModel required> 
+                  <div *ngIf="qkRequest.controls['phoneNumber'].invalid && (qkRequest.controls['phoneNumber'].dirty || qkRequest.controls['phoneNumber'].touched)" class="alert alert-danger">
+                    <div *ngIf="qkRequest.controls['phoneNumber'].errors.required">
+                    Name is required.
+                  </div>
+                </div>                 
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-3 font-style">
-                Phone number:
-              </div>
-              <div class="col-sm-1">
-                <input type="text" id="txtPhoneNumber">
-              </div>
-            </div>
-            <div class="row" style="align-items: center;">
-              <div class="col-sm-8">
-                <button class="btn-style">Call Ambulance</button>
+            <div class="table">
+              <div class="row">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-6" style="width: 100px; align-items: center;">
+                  <button type="submit" class="btn-style">Request</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
-      <div class="col-sm-6">
-        <!-- <app-map></app-map> -->
-        <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
-          <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude" [longitude]="marker.Longitude">
+      <div class="col-sm-6 divTableBack">
+        <app-map></app-map>
+        <!-- <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
+          <agm-marker *ngFor="let marker of availableAmbs" [latitude]="marker.Latitude" [longitude]="marker.Longitude">
             <agm-info-window #infoWindow>
               {{ marker.Label }}
             </agm-info-window>
           </agm-marker>
-        </agm-map>
+        </agm-map> -->
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2 divTableBack">
         <ng-container *ngIf="!isUserLoggedIn">
           <div class="row">
             <button type="button" class="button" (click)="onClickLogin()">
@@ -55,6 +66,40 @@
           </div>
         </ng-container>
       </div>
+    </div>
+    <div class="row">
+      <ng-container *ngIf="isQkRequestDone">
+        <div class="table divTableBack">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="div-grid">
+                <table class="table table-striped table-bordered">
+                  <thead class="black white-text">
+                    <tr>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Mobile Number</th>
+                      <th scope="col">Ambulance Type</th>
+                      <th scope="col">Registration Number</th>
+                      <th scope="col">Vehicle Model</th>
+                      <th scope="col">Medical Facilities</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor='let amb of ambulances'>
+                      <td class="col-xs-6">{{amb.Name}}</td>
+                      <td class="col-xs-6">{{amb.Mobile}}</td>
+                      <td class="col-xs-6">{{amb.Type}}</td>
+                      <td class="col-xs-6">{{amb.RegNumber}}</td>
+                      <td class="col-xs-6">{{amb.Model}}</td>
+                      <td class="col-xs-6">{{amb.Facilities}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { Ambulances } from '../../models/Ambulances';
+import { AvailableAmbulances } from '../../models/AvailableAmbulances';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class AmbulancesService {
   getAvailableAmbulances(): Observable<string[]> {
     this.url = environment.json_server_url + environment.availableAmbulances;
     return this.http.get<string[]>(this.url);
+  }
+  getAvailableAmbulancesLocation(): Observable<AvailableAmbulances[]> {
+    this.url = environment.json_server_url + environment.availableAmbulances;
+    return this.http.get<AvailableAmbulances[]>(this.url);
   }
 
   addAmbulance(args) {
