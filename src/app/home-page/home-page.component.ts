@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AmbulancesService } from '../ambulances/service/ambulances.service';
 import { Router } from '@angular/router';
 import { AvailableAmbulances } from '../models/AvailableAmbulances';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Ambulances } from '../models/Ambulances';
 import { QuickrequestService } from '../home-page/service/quickrequest.service';
+import { MapComponent } from '../map/map.component';
+import { QuickRequest } from '../models/QuickRequest';
 
 @Component({
   selector: 'app-home-page',
@@ -12,17 +14,13 @@ import { QuickrequestService } from '../home-page/service/quickrequest.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-
+  @ViewChild(MapComponent) mapComp;
   lat = 8.5046;
   lng = 76.899999;
   zoom = 11;
   public isUserLoggedIn: boolean = false;
   public ambulances: Ambulances[];
   public isQkRequestDone: boolean = false;
-  // qkRequest = new FormGroup({
-  //   sourceLocation: new FormControl(''),
-  //   phoneNumber: new FormControl('', Validators.required)
-  // });
   qkRequest: FormGroup;
 
   constructor(private fb: FormBuilder, private service: AmbulancesService, private qkService: QuickrequestService, private router: Router) {
@@ -44,6 +42,7 @@ export class HomePageComponent implements OnInit {
   }
   availableAmb: string[];
   availableAmbs: AvailableAmbulances[];
+  public quickRequests: QuickRequest[];
 
   ngOnInit(): void {
     this.qkRequest.controls["phoneNumber"].setValidators([Validators.minLength(10), Validators.maxLength(10)]);
@@ -76,20 +75,34 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   onRequest() {
-    this.getCurrentLocation();
+    this.lat = this.mapComp.latitude;
+    this.lng = this.mapComp.longitude;
+    //this.getCurrentLocation();
     if (this.qkRequest.controls["phoneNumber"].value !== "") {
       const args = [{
-        Source: this.qkRequest.controls["sourceLocation"].value === "" ? "Kazhakoottam" : this.qkRequest.controls["sourceLocation"].value,
-        PhoneNumber: this.qkRequest.controls["phoneNumber"].value,
-        Latitude: this.lat,
-        Longitude: this.lng,
-        IsAccepted: false,
-        VendorId: "",
-        AmbulanceId: ""
+        id:"qk" + this.qkRequest.controls["phoneNumber"].value,
+        source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
+        phoneNumber: this.qkRequest.controls["phoneNumber"].value,
+        latitude: this.lat,
+        longitude: this.lng,
+        status: "Pending",
+        vendorId: "",
+        vendorName:"",
+        ambulanceId: "",
+        driverContact:"",
+        regNumber:""
       }];
-      this.qkService.addQuickRequest(args).subscribe();
       this.isQkRequestDone = true;
+      this.qkService.addQuickRequest(args).subscribe((res)=>{       
+        this.getQuickRequests();
+      });            
     }
+  }
+  getQuickRequests() {
+    let phoneNumber = this.qkRequest.controls["phoneNumber"].value;
+    this.qkService.getQuickRequests().subscribe(data => {
+      this.quickRequests = data.filter(x => x[0].phoneNumber === phoneNumber);
+    });
   }
   getCurrentLocation() {
     if (navigator) {

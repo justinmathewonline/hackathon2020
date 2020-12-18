@@ -22,6 +22,7 @@ import { DriverdashboardComponent } from './driverdashboard/driverdashboard.comp
 import { UserComponent } from './user/user.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { MapComponent } from './map/map.component';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MapComponent } from './map/map.component';
     }),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGoogleMapsAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

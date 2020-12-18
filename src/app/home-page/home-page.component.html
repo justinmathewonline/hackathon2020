@@ -21,12 +21,16 @@
                   Phone Number:
                 </div>
                 <div class="col-sm-2">
-                  <input formControlName="phoneNumber" type="text" id="txtPhoneNumber" ngModel required> 
-                  <div *ngIf="qkRequest.controls['phoneNumber'].invalid && (qkRequest.controls['phoneNumber'].dirty || qkRequest.controls['phoneNumber'].touched)" class="alert alert-danger">
-                    <div *ngIf="qkRequest.controls['phoneNumber'].errors.required">
-                    Name is required.
+                  <input formControlName="phoneNumber" type="text" id="txtPhoneNumber" ngModel required>
+                </div>
+              </div>
+              <div class="row">
+                <div style="width:98%"
+                  *ngIf="qkRequest.controls['phoneNumber'].invalid && (qkRequest.controls['phoneNumber'].dirty || qkRequest.controls['phoneNumber'].touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="qkRequest.controls['phoneNumber'].errors.required">
+                    Phone Number is required.
                   </div>
-                </div>                 
                 </div>
               </div>
             </div>
@@ -68,7 +72,7 @@
       </div>
     </div>
     <div class="row">
-      <ng-container *ngIf="isQkRequestDone">
+      <ng-container *ngIf="quickRequests?.length > 0">
         <div class="table divTableBack">
           <div class="row">
             <div class="col-sm-12">
@@ -78,22 +82,18 @@
                     <tr>
                       <th scope="col">Vendor</th>
                       <th scope="col">Mobile Number</th>
-                      <th scope="col">Ambulance Type</th>
                       <th scope="col">Registration Number</th>
-                      <th scope="col">Vehicle Model</th>
-                      <th scope="col">Medical Facilities</th>
+                      <th scope="col">Status</th>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor='let amb of ambulances'>
-                      <td class="col-xs-6">{{amb.Name}}</td>
-                      <td class="col-xs-6">{{amb.Mobile}}</td>
-                      <td class="col-xs-6">{{amb.Type}}</td>
-                      <td class="col-xs-6">{{amb.RegNumber}}</td>
-                      <td class="col-xs-6">{{amb.Model}}</td>
-                      <td class="col-xs-6">{{amb.Facilities}}</td>
+                  </thead>                                   
+                <tbody>
+                    <tr *ngFor="let req of quickRequests">
+                        <td class="col-xs-6">{{req[0].vendorName}}</td>
+                        <td class="col-xs-6">{{req[0].driverContact}}</td>
+                        <td class="col-xs-6">{{req[0].regNumber}}</td>
+                        <td class="col-xs-6">{{req[0].status}}</td>                        
                     </tr>
-                  </tbody>
+                </tbody>
                 </table>
               </div>
             </div>

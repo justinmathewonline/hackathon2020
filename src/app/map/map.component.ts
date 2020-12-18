@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, Input } from '@angular/core';
 import { AgmMap, MapsAPILoader } from '@agm/core';
 import { AmbulancesService } from '../ambulances/service/ambulances.service';
 import { AvailableAmbulances } from '../models/AvailableAmbulances';
-import { Location, Appearance, GermanAddress } from '@angular-material-extensions/google-maps-autocomplete';
 
 import PlaceResult = google.maps.places.PlaceResult;
 
@@ -24,12 +24,10 @@ interface marker {
 })
 export class MapComponent implements OnInit {
   availableAmbs: AvailableAmbulances[];
-  latitude: number;
-  longitude: number;
+  @Input() latitude: number;
+  @Input() longitude: number;
   zoom: number;
   address: string;
-  private geoCoder;
-  public selectedAddress: PlaceResult;
 
   // Radius
   radius = 5000;
@@ -41,12 +39,13 @@ export class MapComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private service: AmbulancesService
-  ) {}
+  ) { }
   ngOnInit(): void {
     //load Map
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
     });
+
   }
   // Get Current Location Coordinates
   private setCurrentLocation() {
@@ -58,45 +57,33 @@ export class MapComponent implements OnInit {
         this.radiusLong = this.longitude;
         this.zoom = 12;
 
-        this.mapsAPILoader.load().then(() => {  
-          let geocoder = new google.maps.Geocoder;  
-          let latlng = {  
-              lat: this.latitude,  
-              lng: this.longitude  
-          };  
-          geocoder.geocode({  
-              'location': latlng  
-          }, function(results) {  
+        this.mapsAPILoader.load().then(() => {
+          let geocoder = new google.maps.Geocoder;
+          let latlng = {
+            lat: this.latitude,
+            lng: this.longitude
+          };
+          geocoder.geocode({
+            'location': latlng
+          }, function (results) {
             console.log(results);
-              if (results[0]) {  
-                  this.currentLocation = results[0].formatted_address;  
-                  console.log(this.currentLocation);  
-                  
-              } else {  
-                  console.log('Not found');  
-              }  
-          });  
-      });
-        // for (let i = 1; i < 50; i++) {
-        //   this.markers.push(
-        //     {
-        //       lat: this.latitude + Math.random(),
-        //       lng: this.longitude + Math.random(),
-        //       label: `${i}`,
-        //       draggable: false,
-        //       content: `Content no ${i}`,
-        //       isShown: false,
-        //       icon: './assets/marker-red.png'
-        //     });
-        // }
+            if (results[0]) {
+              this.currentLocation = results[0].formatted_address;
+              console.log(this.currentLocation);
+
+            } else {
+              console.log('Not found');
+            }
+          });
+        });
       });
       this.getAvailableAmbulancesByLocation(this.latitude, this.longitude);
     }
   }
   getAvailableAmbulancesByLocation(lat: any, lng: any) {
-    this.service.getAvailableAmbulancesLocation().subscribe(data => {      
+    this.service.getAvailableAmbulancesLocation().subscribe(data => {
       //this.availableAmbs = data.filter(x=> x.Latitude.split(".").includes(lat.split(".")) && x.Longitude.split(".").includes(lng.split("."))); 
-      this.availableAmbs = data;  
+      this.availableAmbs = data;
     });
   }
   clickedMarker(label: string, index: number) {
@@ -136,43 +123,28 @@ export class MapComponent implements OnInit {
       return false;
     }
   }
-  onAutocompleteSelected(result: PlaceResult) {
-    console.log('onAutocompleteSelected: ', result);
-  }
-
-  onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
-    this.latitude = location.latitude;
-    this.longitude = location.longitude;
-  }
-
-  onGermanAddressMapped($event: GermanAddress) {
-    console.log('onGermanAddressMapped', $event);
-  }
-  mapClicked($event){
+  mapClicked($event) {
     console.log($event);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
-  // this.getAddress(this.latitude, this.longitude);
-     
-    this.mapsAPILoader.load().then(() => {  
-        let geocoder = new google.maps.Geocoder;  
-        let latlng = {  
-            lat: this.latitude,  
-            lng: this.longitude  
-        };  
-        geocoder.geocode({  
-            'location': latlng  
-        }, function(results) {  
-            if (results[0]) {  
-                this.currentLocation = results[0].formatted_address;  
-                console.log(this.currentLocation);  
-            } else {  
-                console.log('Not found');  
-            }  
-        });  
-    });  
+    // this.getAddress(this.latitude, this.longitude);
 
+    this.mapsAPILoader.load().then(() => {
+      let geocoder = new google.maps.Geocoder;
+      let latlng = {
+        lat: this.latitude,
+        lng: this.longitude
+      };
+      geocoder.geocode({
+        'location': latlng
+      }, function (results) {
+        if (results[0]) {
+          this.currentLocation = results[0].formatted_address;
+          console.log(this.currentLocation);
+        } else {
+          console.log('Not found');
+        }
+      });
+    });
   }
-
 }
