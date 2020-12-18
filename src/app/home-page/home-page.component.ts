@@ -46,6 +46,9 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.qkRequest.controls["phoneNumber"].setValidators([Validators.minLength(10), Validators.maxLength(10)]);
+    if (localStorage.getItem("phoneNumber") !== "") {
+      this.qkRequest.controls["phoneNumber"].setValue(localStorage.getItem("phoneNumber"));
+    }
     if (localStorage.getItem("isUserLoggedIn") === undefined) {
       localStorage.setItem("isUserLoggedIn", this.isUserLoggedIn.toString());
     }
@@ -53,8 +56,8 @@ export class HomePageComponent implements OnInit {
       this.isUserLoggedIn = localStorage.getItem("isUserLoggedIn").toString() === "true" ? true : false;
     }
     this.getAvailableAmbulances();
+    this.getQuickRequests();
   }
-
   getAvailableAmbulances() {
     this.service.getAvailableAmbulances().subscribe(data => {
       this.availableAmb = data;
@@ -80,26 +83,27 @@ export class HomePageComponent implements OnInit {
     //this.getCurrentLocation();
     if (this.qkRequest.controls["phoneNumber"].value !== "") {
       const args = [{
-        id:"qk" + this.qkRequest.controls["phoneNumber"].value,
+        id: "qk" + this.qkRequest.controls["phoneNumber"].value,
         source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
         phoneNumber: this.qkRequest.controls["phoneNumber"].value,
         latitude: this.lat,
         longitude: this.lng,
         status: "Pending",
         vendorId: "",
-        vendorName:"",
+        vendorName: "",
         ambulanceId: "",
-        driverContact:"",
-        regNumber:""
+        driverContact: "",
+        regNumber: ""
       }];
       this.isQkRequestDone = true;
-      this.qkService.addQuickRequest(args).subscribe((res)=>{       
+      this.qkService.addQuickRequest(args).subscribe((res) => {
         this.getQuickRequests();
-      });            
+      });
     }
   }
   getQuickRequests() {
     let phoneNumber = this.qkRequest.controls["phoneNumber"].value;
+    localStorage.setItem("phoneNumber", phoneNumber);
     this.qkService.getQuickRequests().subscribe(data => {
       this.quickRequests = data.filter(x => x[0].phoneNumber === phoneNumber);
     });
@@ -122,6 +126,9 @@ export class HomePageComponent implements OnInit {
     this.service.getAmbulances().subscribe(data => {
       this.ambulances = data;
     });
+  }
+  ngOnDestroy() {
+    localStorage.clear["phoneNumber"];
   }
 }
 
