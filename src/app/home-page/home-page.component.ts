@@ -7,6 +7,8 @@ import { Ambulances } from '../models/Ambulances';
 import { QuickrequestService } from '../home-page/service/quickrequest.service';
 import { MapComponent } from '../map/map.component';
 import { QuickRequest } from '../models/QuickRequest';
+import { RegistrationService } from '../registration/service/registration.service';
+import { Users } from '../models/Users';
 
 @Component({
   selector: 'app-home-page',
@@ -22,8 +24,11 @@ export class HomePageComponent implements OnInit {
   public ambulances: Ambulances[];
   public isQkRequestDone: boolean = false;
   qkRequest: FormGroup;
+  amb: Ambulances;
+  vendor: Users;
 
-  constructor(private fb: FormBuilder, private service: AmbulancesService, private qkService: QuickrequestService, private router: Router) {
+  constructor(private fb: FormBuilder, private service: AmbulancesService, private qkService: QuickrequestService,
+    private vendService: RegistrationService, private router: Router) {
     if (navigator) {
       navigator.geolocation.getCurrentPosition(pos => {
         this.lng = +pos.coords.longitude;
@@ -42,12 +47,16 @@ export class HomePageComponent implements OnInit {
   }
   availableAmb: string[];
   availableAmbs: AvailableAmbulances[];
+  public users: Users[];
   public quickRequests: QuickRequest[];
+  public closestAmbulance: AvailableAmbulances;
+  public loading = false;
+  public loaderText: Number = 1;
 
   ngOnInit(): void {
     this.qkRequest.controls["phoneNumber"].setValidators([Validators.minLength(10), Validators.maxLength(10)]);
     if (localStorage.getItem("phoneNumber") !== "") {
-      this.qkRequest.controls["phoneNumber"].setValue(localStorage.getItem("phoneNumber"));
+      this.qkRequest.controls.phoneNumber.setValue(localStorage.getItem("phoneNumber"));
     }
     if (localStorage.getItem("isUserLoggedIn") === undefined) {
       localStorage.setItem("isUserLoggedIn", this.isUserLoggedIn.toString());
@@ -65,8 +74,7 @@ export class HomePageComponent implements OnInit {
   }
   getAvailableAmbulancesByLocation(lat: any, lng: any) {
     this.service.getAvailableAmbulancesLocation().subscribe(data => {
-      //this.availableAmbs = data.filter(x=> x.Latitude.split(".").includes(lat.split(".")) && x.Longitude.split(".").includes(lng.split("."))); 
-      this.availableAmbs = data;
+     this.availableAmbs = data;
     });
   }
   onClickSignUp() {
@@ -82,26 +90,29 @@ export class HomePageComponent implements OnInit {
     this.lng = this.mapComp.longitude;
     //this.getCurrentLocation();
     if (this.qkRequest.controls["phoneNumber"].value !== "") {
-      const args = [{
-        id: "qk" + this.qkRequest.controls["phoneNumber"].value,
-        source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
-        phoneNumber: this.qkRequest.controls["phoneNumber"].value,
-        latitude: this.lat,
-        longitude: this.lng,
-        status: "Pending",
-        vendorId: "",
-        vendorName: "",
-        ambulanceId: "",
-        driverContact: "",
-        regNumber: ""
-      }];
-      this.isQkRequestDone = true;
-      this.qkService.addQuickRequest(args).subscribe((res) => {
-        this.getQuickRequests();
-      });
+      // const args = [{
+      //   id: "qk" + this.qkRequest.controls["phoneNumber"].value,
+      //   source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
+      //   phoneNumber: this.qkRequest.controls["phoneNumber"].value,
+      //   latitude: this.lat,
+      //   longitude: this.lng,
+      //   status: "Pending",
+      //   vendorId: "",
+      //   vendorName: "",
+      //   ambulanceId: "",
+      //   driverContact: "",
+      //   regNumber: ""
+      // }];
+      // this.isQkRequestDone = true;
+      // this.qkService.addQuickRequest(args).subscribe((res) => {
+      //   this.getQuickRequests();
+      // });
+
+      this.assignClosestAmbulance(); // Bypassing the pending logic
     }
   }
   getQuickRequests() {
+    //this.assignClosestAmbulance();
     let phoneNumber = this.qkRequest.controls["phoneNumber"].value;
     localStorage.setItem("phoneNumber", phoneNumber);
     this.qkService.getQuickRequests().subscribe(data => {
@@ -127,8 +138,74 @@ export class HomePageComponent implements OnInit {
       this.ambulances = data;
     });
   }
+  getVendors() {
+    this.vendService.getVendors().subscribe(data => {
+      this.users = data;
+    });
+  }
   ngOnDestroy() {
     localStorage.clear["phoneNumber"];
   }
+
+  assignClosestAmbulance() {
+    let lat = this.lat;
+    let lng = this.lng;
+    let R = 5000; // radius of earth in km
+    let distances = [];
+    let closest = -1;
+    let i = 0;
+    let closestAmbId = "";
+    let closestVenId = "";
+    if (this.availableAmbs.length > 0) {
+      this.availableAmbs.forEach(marker => {
+        var mlat = marker.Latitude;
+        var mlng = marker.Longitude;
+        var dLat = this.rad(mlat - lat);
+        var dLong = this.rad(mlng - lng);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(this.rad(lat)) * Math.cos(this.rad(lat)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        distances[i] = d;
+        if (closest == -1 || d < distances[closest]) {
+          closest = i;
+          closestAmbId = marker.AmbulanceId;
+          closestVenId = marker.VendorId;
+        }
+        i++;
+      });
+    }
+    this.closestAmbulance = this.availableAmbs.find(x => x.AmbulanceId === closestAmbId && x.VendorId === closestVenId);
+
+    this.service.getAmbulances().subscribe(data => {
+      this.amb = data.find(x => x.AmbulanceId === closestAmbId && x.VendorId === closestVenId);
+      this.vendService.getVendors().subscribe(res => {
+        this.vendor = res.find(x => x.VendorId === closestVenId);
+        // Accepting the request for the time being
+        const args = [{
+          id: "qk" + this.qkRequest.controls["phoneNumber"].value,
+          source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
+          phoneNumber: this.qkRequest.controls["phoneNumber"].value,
+          latitude: this.lat,
+          longitude: this.lng,
+          status: "Accepted",
+          vendorId: this.closestAmbulance.VendorId,
+          vendorName: this.vendor.Name,
+          ambulanceId: this.closestAmbulance.AmbulanceId,
+          driverContact: this.amb.Mobile,
+          regNumber: this.amb.RegNumber
+        }];
+        let id = "qk" + this.qkRequest.controls["phoneNumber"].value;
+        this.qkService.addQuickRequest(args).subscribe(data => {
+          this.isQkRequestDone = true;
+          this.getQuickRequests();
+        });
+      });
+    });
+  }
+
+  rad(x) { return x * Math.PI / 180; }
+
+
 }
 

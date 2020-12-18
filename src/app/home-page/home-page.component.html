@@ -80,20 +80,20 @@
                 <table class="table table-striped table-bordered">
                   <thead class="black white-text">
                     <tr>
-                      <th scope="col">Phone Number</th>
-                      <th scope="col">Vendor</th>
-                      <th scope="col">Contact Number</th>
-                      <th scope="col">Registration Number</th>
-                      <th scope="col">Status</th>
+                      <th scope="col" style="font-size:smaller;">Request Phone Number</th>
+                      <th scope="col" style="font-size:smaller;">Vendor</th>
+                      <th scope="col" style="font-size:smaller;">Driver Contact Number</th>
+                      <th scope="col" style="font-size:smaller;">Registration Number</th>
+                      <th scope="col" style="font-size:smaller;">Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let req of quickRequests">
-                      <td class="col-xs-6">{{req[0].phoneNumber}}</td>
-                      <td class="col-xs-6">{{req[0].vendorName}}</td>
-                      <td class="col-xs-6">{{req[0].driverContact}}</td>
-                      <td class="col-xs-6">{{req[0].regNumber}}</td>
-                      <td class="col-xs-6">{{req[0].status}}</td>
+                      <td class="col-xs-6" style="font-size:smaller;">{{req[0].phoneNumber}}</td>
+                      <td class="col-xs-6" style="font-size:smaller;">{{req[0].vendorName}}</td>
+                      <td class="col-xs-6" style="font-size:smaller;">{{req[0].driverContact}}</td>
+                      <td class="col-xs-6" style="font-size:smaller;">{{req[0].regNumber}}</td>
+                      <td class="col-xs-6" style="font-size:smaller;">{{req[0].status}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -101,7 +101,7 @@
             </div>
           </div>
         </div>
-      </ng-container>
+      </ng-container>      
     </div>
   </div>
 </div>

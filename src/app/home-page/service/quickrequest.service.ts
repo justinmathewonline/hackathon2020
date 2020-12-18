@@ -18,15 +18,6 @@ export class QuickrequestService {
     this.url = environment.json_server_url + environment.quickRequest;
     return this.http.get<QuickRequest[]>(this.url);
   }
-  // getAvailableAmbulances(): Observable<string[]> {
-  //   this.url = environment.json_server_url + environment.availableAmbulances;
-  //   return this.http.get<string[]>(this.url);
-  // }
-  // getAvailableAmbulancesLocation(): Observable<AvailableAmbulances[]> {
-  //   this.url = environment.json_server_url + environment.availableAmbulances;
-  //   return this.http.get<AvailableAmbulances[]>(this.url);
-  // }
-
   addQuickRequest(args) {
     const body = JSON.stringify(args);
     const header = {
@@ -39,5 +30,25 @@ export class QuickrequestService {
     this.url = environment.json_server_url + environment.quickRequest;
     return this.http.post(this.url, body, options);
   }
+
+  updateQuickRequest(id, args) {
+    const body = JSON.stringify(args);
+    const header = {
+      'Content-Type': 'application/json'
+    };
+    const options = {
+      method: 'PUT',
+      headers: new HttpHeaders(header)
+    };
+    this.url = environment.json_server_url + environment.quickRequest;
+    return this.http.put(this.url + id, body, options)    
+  }
+
+  // delete(id){
+  //   return this.httpClient.delete<Product>(this.apiServer + '/products/' + id, this.httpOptions)
+  //   .pipe(
+  //     catchError(this.errorHandler)
+  //   )
+  // }
 
 }
