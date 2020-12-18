@@ -3,10 +3,10 @@
         <div class="table">
             <div class="row">
                 <div class="col-sm-1">
-                    <a routerLink="/home" background-color="red" routerLinkActive="active">Home</a>
+                    <a routerLink="/home" background-color="red" *ngIf="userRole !== '1'" routerLinkActive="active">Home</a>
                 </div>
                 <div class="col-sm-1">
-                    <a routerLink="/profile" background-color="red" routerLinkActive="active">Profile</a>
+                    <a routerLink="/profile" background-color="red"  routerLinkActive="active">Profile</a>
                 </div>
                 <div class="col-sm-1">
                     <a routerLink="/ambulances" background-color="red" routerLinkActive="active"
@@ -16,13 +16,13 @@
                     <a routerLink="/bookambulance" routerLinkActive="active" *ngIf="userRole === '1'">Book Ambulance</a>
                 </div>
                 <div class="col-sm-1">                
-                    <a routerLink="/user" routerLinkActive="active">user</a>                 
+                    <a routerLink="/user" *ngIf="userRole === '5'" routerLinkActive="active">user</a>                 
                 </div>
                 <div class="col-sm-1">                
-                    <a routerLink="/subscribe" routerLinkActive="active">plan</a>                 
+                    <a routerLink="/subscribe" *ngIf="userRole === '5'" routerLinkActive="active">plan</a>                 
                 </div>
                 <div class="col-sm-1">
-                    <a (click)="logout()" routerLinkActive="active">Logout</a>
+                    <a  routerLink="" (click)="logout()"  routerLinkActive="active">Logout</a>
                 </div>
             </div>
         </div>
