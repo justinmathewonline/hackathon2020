@@ -9,7 +9,7 @@
         <div class="div-table-row">
            <div class="div-table-col">Hospital:</div>
            <div  class="div-table-col">
-            <select>
+            <select id="bookHospitalName">
                 <option >--Select--</option>
                 <option >KIMS</option>
                 <option >CSI</option>
@@ -50,7 +50,7 @@
     <div class="div-table-row">
        <div class="div-table-col">Vehicle Type:</div>
        <div  class="div-table-col">
-        <select>
+        <select id="bookVechicleType">
             <option >--Select--</option>
             <option >Traveller</option>
             <option >Omni</option>
@@ -100,10 +100,10 @@
     <div class="div-table-row">
         
        <div class="div-table-col">
-        <button style="background-color: gray;">Add</button>
+        <button style="background-color: gray;" (click)="bookAmbulance()" >Add</button>
        </div>
        <div  class="div-table-col">
-        <button style="background-color: gray;">Cancel</button>
+        <button style="background-color: gray;" (click)="goToProfile()">Cancel</button>
        </div>
     </div>
 </div>

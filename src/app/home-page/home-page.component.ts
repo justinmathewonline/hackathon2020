@@ -45,6 +45,7 @@ export class HomePageComponent implements OnInit {
   public quickRequests: QuickRequest[];
 
   ngOnInit(): void {
+    localStorage.setItem("isUserLoggedIn", "false");
     this.qkRequest.controls["phoneNumber"].setValidators([Validators.minLength(10), Validators.maxLength(10)]);
     if (localStorage.getItem("phoneNumber") !== "") {
       this.qkRequest.controls["phoneNumber"].setValue(localStorage.getItem("phoneNumber"));

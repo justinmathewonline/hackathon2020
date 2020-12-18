@@ -52,4 +52,18 @@ export class AmbulancesService {
     return this.http.post(this.url, body, options);
   }
 
+  postBookAmbulances(args)
+  {
+    const body = JSON.stringify(args);
+    const header = {
+      'Content-Type': 'application/json'
+    };
+    const options = {
+      method: 'POST',
+      headers: new HttpHeaders(header)
+    };
+    this.url = environment.json_server_url + environment.bookAmbulance;
+    return this.http.post(this.url, body, options);
+  }
+
 }

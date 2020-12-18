@@ -28,5 +28,10 @@ export class DriverhomeComponent implements OnInit {
       this.requests = data;
     });
   }
-
+  onClickTrips() {
+    this.router.navigate(['/completedtrips']);
+  }
+  onClickHome() {
+    this.router.navigate(['/driverhome']);
+  }
 }

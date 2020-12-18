@@ -9,7 +9,8 @@ export const environment = {
   ambulance:"ambulances",
   availableAmbulances:"availableAmbulances",
   vendors:"vendors",
-  quickRequest:"quickRequest"
+  quickRequest:"quickRequest",
+  bookAmbulance:"bookAmbulance"
 };
 
 /*
