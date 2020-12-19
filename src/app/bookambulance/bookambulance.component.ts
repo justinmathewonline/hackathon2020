@@ -13,7 +13,7 @@ export class BookambulanceComponent implements OnInit {
   constructor(private service: AmbulancesService, private router: Router) { }
   public objAmbulance: BookAmbulanceModel[];
   private singleObject: BookAmbulanceModel;
-  debugger;
+
   form = new FormGroup({
 
     hospitalName: new FormControl('', [Validators.required]),
@@ -29,7 +29,7 @@ export class BookambulanceComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    debugger;
+ 
     var retrievedData = localStorage.getItem("bookambulance");
     var data = JSON.parse(retrievedData);
     this.objAmbulance=data;
@@ -37,13 +37,12 @@ export class BookambulanceComponent implements OnInit {
   }
   goToProfile()
   {
-    debugger;
-
+   
     this.router.navigate(['/profile']);
 
   }
   onBookAmbulance(){
-    debugger;
+ 
     let mfacility="";
     if(this.form.controls["firstaid"].value === true)
     {
@@ -51,7 +50,7 @@ export class BookambulanceComponent implements OnInit {
     }
     if(this.form.controls["ventilator"].value === true)
     {
-      mfacility = "ventilator";
+      mfacility = "Ventilator";
     }
     if(this.form.controls["ecg"].value === true)
     {
@@ -67,10 +66,10 @@ export class BookambulanceComponent implements OnInit {
     }];
     
 
-      this.service.postBookAmbulances(args).subscribe(data => {
+     // this.service.postBookAmbulances(args).subscribe(data => {
 
-        if(data)
-        {
+      //  if(data)
+       // {
          // this.objAmbulance=args;
       
          this.singleObject = new BookAmbulanceModel(          
@@ -98,8 +97,8 @@ export class BookambulanceComponent implements OnInit {
         //  this.service.getBookAmbulances().subscribe(data => {
       
         // });
-      }
-      });
+     // }
+     // });
     return false;;
   }
 

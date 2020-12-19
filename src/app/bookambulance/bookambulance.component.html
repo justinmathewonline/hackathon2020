@@ -122,7 +122,7 @@
 
 </form>
 
-<div class="table">
+<div class="table" *ngIf="objAmbulance?.length>0">
     <div class="row">
         <div class="col-sm-11">
             <div class="div-grid">
@@ -135,6 +135,7 @@
                             <th scope="col">Vehicle Type</th>
                             <th scope="col">Medical Facilities</th>
                             <th scope="col">PatientPhoneNumber</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -145,6 +146,7 @@
                             <td class="col-xs-6">{{amb.vechileType}}</td>
                             <td class="col-xs-6">{{amb.MedicalFacilities}}</td>
                             <td class="col-xs-6">{{amb.PatientPhoneNumber}}</td>
+                            <td class="col-xs-6">Pending </td>
                         </tr>
                     </tbody>
                 </table>
