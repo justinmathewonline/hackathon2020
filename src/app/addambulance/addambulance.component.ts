@@ -63,7 +63,6 @@ export class AddambulanceComponent implements OnInit {
 
     var retrievedData = localStorage.getItem("addambulance");
     var data = JSON.parse(retrievedData);
-    
    if(data==undefined || data==null)
    {
     localStorage.setItem("addambulance", JSON.stringify(args));
