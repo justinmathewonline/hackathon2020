@@ -50,7 +50,7 @@ export class AddambulanceComponent implements OnInit {
     {
       mfacility = "Ventilator";
     }
-    debugger;
+
     const args = [{ 
           VendorId:"vkims",
           AmbulanceId: "1",
@@ -60,7 +60,7 @@ export class AddambulanceComponent implements OnInit {
           Facilities:  mfacility,
           Mobile: this.form.controls["contactnumber"].value
     }];
- debugger;
+
     var retrievedData = localStorage.getItem("addambulance");
     var data = JSON.parse(retrievedData);
     
@@ -74,7 +74,7 @@ export class AddambulanceComponent implements OnInit {
 
    
       // this.service.addAmbulance(args).subscribe(data => {
-      //   debugger;
+ 
       this.goToAmbulances();
       // });
     
