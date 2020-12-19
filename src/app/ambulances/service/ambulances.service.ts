@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { Ambulances } from '../../models/Ambulances';
 import { AvailableAmbulances } from '../../models/AvailableAmbulances';
-
+import { BookAmbulanceModel } from '../../models/BookAmbulanceModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +27,7 @@ export class AmbulancesService {
   }
 
   addAmbulance(args) {
+    debugger;
     const body = JSON.stringify(args);
     const header = {
       'Content-Type': 'application/json'
@@ -81,5 +82,8 @@ export class AmbulancesService {
     this.url = environment.json_server_url + environment.bookAmbulance;
     return this.http.post(this.url, body, options);
   }
-
+  getBookAmbulances(): Observable<BookAmbulanceModel[]> {
+    this.url = environment.json_server_url + environment.bookAmbulance;
+    return this.http.get<BookAmbulanceModel[]>(this.url);
+  }
 }

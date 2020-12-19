@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AmbulancesService } from '../ambulances/service/ambulances.service';
 import { Router } from '@angular/router';
 import { Ambulances } from '../models/Ambulances';
-
+import { BookAmbulanceModel } from '../models/BookAmbulanceModel';
 @Component({
   selector: 'app-ambulances',
   templateUrl: './ambulances.component.html',
@@ -17,9 +17,20 @@ export class AmbulancesComponent implements OnInit {
   }
 
   getAmbulances() {
-    this.service.getAmbulances().subscribe(data => {
-      this.ambulances = data;
-    });
+   // localStorage.setItem("addambulance", JSON.stringify(args));
+
+    var retrievedData = localStorage.getItem("addambulance");
+    var fromLocalstorage = JSON.parse(retrievedData); 
+
+
+     this.service.getAmbulances().subscribe(data => {
+     
+      data.forEach(function(item){  
+        fromLocalstorage.push(item); 
+      }); 
+       this.ambulances=fromLocalstorage;
+     });
+     
   }
   add() {
     this.router.navigate(['/addambulance']);
