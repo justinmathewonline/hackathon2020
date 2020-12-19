@@ -25,7 +25,9 @@ export class ProfileComponent implements OnInit {
   label: string;
 
   ngOnInit(): void {
+    debugger;
     this.geoCoder = new google.maps.Geocoder;
+
     this.userRole = localStorage.getItem("role");
     this.getAmbulancesByVendor();
   }

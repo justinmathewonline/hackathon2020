@@ -16,12 +16,12 @@
 
 
 
-
+    <form [formGroup]="form" >
     <div class="div-table">
         <div class="div-table-row">
            <div class="div-table-col">Hospital:</div>
            <div  class="div-table-col">
-            <select id="bookHospitalName">
+            <select formControlName="hospitalName">
                 <option >--Select--</option>
                 <option >KIMS</option>
                 <option >CSI</option>
@@ -36,7 +36,7 @@
     <div class="div-table-row">
        <div class="div-table-col">Appointment Date:</div>
        <div  class="div-table-col">
-        <input type="date"/>
+        <input type="date" formControlName="appointment" />
        </div>
        
     </div>
@@ -46,7 +46,7 @@
     <div class="div-table-row">
        <div class="div-table-col">Ambulance Type:</div>
        <div  class="div-table-col">
-        <select>
+        <select formControlName="ambulanceType">
             <option >--Select--</option>
             <option >Basic</option>
             <option >Mortuary</option>
@@ -62,7 +62,7 @@
     <div class="div-table-row">
        <div class="div-table-col">Vehicle Type:</div>
        <div  class="div-table-col">
-        <select id="bookVechicleType">
+        <select id="bookVechicleType" formControlName="vechileType">
             <option >--Select--</option>
             <option >Traveller</option>
             <option >Omni</option>
@@ -76,7 +76,7 @@
     <div class="div-table-row">
        <div class="div-table-col">Medical Facilities:</div>
        <div  class="div-table-col">
-        <input type="checkbox" id="firstaid" >
+        <input type="checkbox" id="firstaid" formControlName="firstaid" >
     <label for="firstaid"> Basic First Aid</label>
     
        </div>
@@ -85,7 +85,7 @@
        <div class="div-table-row">
         <div class="div-table-col">.</div>
         <div  class="div-table-col">
-         <input type="checkbox" id="firstaid" >
+         <input type="checkbox" formControlName="ventilator" >
      <label for="firstaid"> Ventilator</label>
         </div>
         </div>
@@ -93,7 +93,7 @@
             <div class="div-table-row">
                 <div class="div-table-col">.</div>
                 <div  class="div-table-col">
-                 <input type="checkbox" id="ECG" >
+                 <input type="checkbox" id="ECG" formControlName="ecg">
                 <label for="ECG"> ECG Machine</label>
                 </div>
                 </div>
@@ -103,7 +103,7 @@
     <div class="div-table-row">
        <div class="div-table-col">Patient Phone Number:</div>
        <div  class="div-table-col">
-        <input type="text"/>
+        <input type="text" formControlName="phoneNumber"/>
        </div>
     </div>
 </div>
@@ -112,7 +112,7 @@
     <div class="div-table-row">
         
        <div class="div-table-col">
-        <button style="background-color: gray;" (click)="bookAmbulance()" >Add</button>
+        <button style="background-color: gray;"  type="button"  (click)="onBookAmbulance()" >Add</button>
        </div>
        <div  class="div-table-col">
         <button style="background-color: gray;" (click)="goToProfile()">Cancel</button>
@@ -120,5 +120,37 @@
     </div>
 </div>
 
+</form>
+
+<div class="table">
+    <div class="row">
+        <div class="col-sm-11">
+            <div class="div-grid">
+                <table class="table table-striped table-bordered">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col">Hospital Name</th>
+                            <th scope="col">Appointment Date</th>
+                            <th scope="col">Ambulance Type</th>
+                            <th scope="col">Vehicle Type</th>
+                            <th scope="col">Medical Facilities</th>
+                            <th scope="col">PatientPhoneNumber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let amb of objAmbulance'>
+                            <td class="col-xs-6">{{amb.hospitalName}}</td>
+                            <td class="col-xs-6">{{amb.appointmentDate}}</td>
+                            <td class="col-xs-6">{{amb.ambulanceType}}</td>
+                            <td class="col-xs-6">{{amb.vechileType}}</td>
+                            <td class="col-xs-6">{{amb.MedicalFacilities}}</td>
+                            <td class="col-xs-6">{{amb.PatientPhoneNumber}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
