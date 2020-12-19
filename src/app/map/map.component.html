@@ -3,10 +3,10 @@
         <div class="col-sm-12">
             <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="mapClicked($event)">
                 <ng-container *ngFor="let m of availableAmbs; let i = index">
-                    <agm-marker (markerClick)="clickedMarker(m.label, i)" [latitude]="m.Latitude"
-                        [longitude]="m.Longitude" [label]="m.Label">
+                    <agm-marker (markerClick)="clickedMarker(m.label, i)" [latitude]="m.latitude"
+                        [longitude]="m.longitude" [label]="m.label">
                         <agm-info-window>
-                            <div>{{m.content}}</div>
+                            <div>{{m.label}}</div>
                         </agm-info-window>
                     </agm-marker>
                 </ng-container>

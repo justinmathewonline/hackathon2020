@@ -1,5 +1,4 @@
-
- <app-menu></app-menu>  
+<app-menu></app-menu>
 
 <div class="content" role="main">
     <div class="table">
@@ -10,35 +9,25 @@
         </div>
         <div class="row">
             <div class="col-sm-4" style="align-items: center;">
-                <ng-container id="driver" *ngIf="userRole !== '1'">
-                    <form [FrmGroup]="driverForm">
+                <form [formGroup]="form">
+                    <ng-container id="driver" *ngIf="userRole !== '1'">
                         <div class="table">
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <select class="form-control" formControlName="ambulances" id="ambulances"
-                                        name="ambulances" style="width: 185px;">
-                                        <ng-template ngFor let-ambulance [ngForOf]="ambulanceList" let-i="index">
-                                            <option *ngIf="i==0" value="" disabled>Select Ambulance</option>
-                                            <option value="{{ambulance.AmbulanceId}}">{{ambulance.RegNumber}}</option>
-                                        </ng-template>
+                                <div class="col-sm-6">                                   
+                                    <select formControlName="ambulances" id="ambulances" name="ambulances"
+                                        style="width: 185px;">
+                                        <option *ngFor="let ambulance of ambulanceList" [ngValue]="ambulance">
+                                            {{ ambulance.RegNumber }}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="button" (click)="goOnline()">GO ONLINE</button>
+                                    <button type="button" class="button"(click)="goOnline()">GO ONLINE</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </ng-container>
-                <ng-container id="individual" *ngIf="userRole === '1'">
-                    <div class="table">
-                        <div class="row">
-                            <div class="col-sm-20">
-                                <!-- <app-user></app-user> -->
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
+                    </ng-container>
+                </form>
             </div>
         </div>
     </div>

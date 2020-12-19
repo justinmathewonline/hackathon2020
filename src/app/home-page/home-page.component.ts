@@ -9,7 +9,6 @@ import { MapComponent } from '../map/map.component';
 import { QuickRequest } from '../models/QuickRequest';
 import { RegistrationService } from '../registration/service/registration.service';
 import { Users } from '../models/Users';
-import { JsonService } from '../home-page/service/json.service';
 
 @Component({
   selector: 'app-home-page',
@@ -29,12 +28,12 @@ export class HomePageComponent implements OnInit {
   vendor: Users;
 
   constructor(private fb: FormBuilder, private service: AmbulancesService, private qkService: QuickrequestService,
-    private vendService: RegistrationService, private router: Router, private dService: JsonService) {
+    private vendService: RegistrationService, private router: Router) {
     if (navigator) {
       navigator.geolocation.getCurrentPosition(pos => {
         this.lng = +pos.coords.longitude;
         this.lat = +pos.coords.latitude;
-        this.getAvailableAmbulancesByLocation(this.lat, this.lng);
+        this.getAvailableAmbulancesByLocation();
       });
     }
     this.createForm();
@@ -51,8 +50,6 @@ export class HomePageComponent implements OnInit {
   public users: Users[];
   public quickRequests: QuickRequest[];
   public closestAmbulance: AvailableAmbulances;
-  public loading = false;
-  public loaderText: Number = 1;
 
   ngOnInit(): void {
     this.qkRequest.controls["phoneNumber"].setValidators([Validators.minLength(10), Validators.maxLength(10)]);
@@ -73,9 +70,9 @@ export class HomePageComponent implements OnInit {
       this.availableAmb = data;
     });
   }
-  getAvailableAmbulancesByLocation(lat: any, lng: any) {
+  getAvailableAmbulancesByLocation() {
     this.service.getAvailableAmbulancesLocation().subscribe(data => {
-      this.availableAmbs = data;
+      this.availableAmbs = data.filter(x => x.isOnService === "false");
     });
   }
   onClickSignUp() {
@@ -89,35 +86,34 @@ export class HomePageComponent implements OnInit {
   onRequest() {
     this.lat = this.mapComp.latitude;
     this.lng = this.mapComp.longitude;
-    //this.getCurrentLocation();
     if (this.qkRequest.controls["phoneNumber"].value !== "") {
-      const args = [{
-        id: "qk" + this.qkRequest.controls["phoneNumber"].value,
-        source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
-        phoneNumber: this.qkRequest.controls["phoneNumber"].value,
-        latitude: this.lat,
-        longitude: this.lng,
-        status: "Pending",
-        vendorId: "",
-        vendorName: "",
-        ambulanceId: "",
-        driverContact: "",
-        regNumber: ""
-      }];
-      this.isQkRequestDone = true;
-      this.qkService.addQuickRequest(args).subscribe((res) => {
-        this.dService.changeDataSub(res);
-        this.getQuickRequests();
+      this.qkService.getQuickRequests().subscribe(data => {
+        const args = {
+          id: data.length + 1,
+          source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
+          phoneNumber: this.qkRequest.controls["phoneNumber"].value,
+          latitude: this.lat,
+          longitude: this.lng,
+          status: "Pending",
+          vendorId: "",
+          vendorName: "",
+          ambulanceId: "",
+          driverContact: "",
+          regNumber: ""
+        };
+        this.isQkRequestDone = true;
+        this.qkService.addQuickRequest(args).subscribe((res) => {          
+          this.getQuickRequests();
+        });
+        //this.assignClosestAmbulance(); // Bypassing the pending logic
       });
-
-      //this.assignClosestAmbulance(); // Bypassing the pending logic
     }
   }
   getQuickRequests() {
     let phoneNumber = this.qkRequest.controls["phoneNumber"].value;
     localStorage.setItem("phoneNumber", phoneNumber);
     this.qkService.getQuickRequests().subscribe(data => {
-      this.quickRequests = data.filter(x => x[0].phoneNumber === phoneNumber);
+      this.quickRequests = data.filter(x => x.phoneNumber === phoneNumber);
     });
   }
   getCurrentLocation() {
@@ -159,8 +155,8 @@ export class HomePageComponent implements OnInit {
     let closestVenId = "";
     if (this.availableAmbs.length > 0) {
       this.availableAmbs.forEach(marker => {
-        var mlat = marker.Latitude;
-        var mlng = marker.Longitude;
+        var mlat = marker.latitude;
+        var mlng = marker.longitude;
         var dLat = this.rad(mlat - lat);
         var dLong = this.rad(mlng - lng);
         var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -170,32 +166,32 @@ export class HomePageComponent implements OnInit {
         distances[i] = d;
         if (closest == -1 || d < distances[closest]) {
           closest = i;
-          closestAmbId = marker.AmbulanceId;
-          closestVenId = marker.VendorId;
+          closestAmbId = marker.ambulanceId;
+          closestVenId = marker.vendorId;
         }
         i++;
       });
     }
-    this.closestAmbulance = this.availableAmbs.find(x => x.AmbulanceId === closestAmbId && x.VendorId === closestVenId);
+    this.closestAmbulance = this.availableAmbs.find(x => x.ambulanceId === closestAmbId && x.vendorId === closestVenId);
 
     this.service.getAmbulances().subscribe(data => {
       this.amb = data.find(x => x.AmbulanceId === closestAmbId && x.VendorId === closestVenId);
       this.vendService.getVendors().subscribe(res => {
         this.vendor = res.find(x => x.VendorId === closestVenId);
         // Accepting the request for the time being
-        const args = [{
+        const args = {
           id: "qk" + this.qkRequest.controls["phoneNumber"].value,
           source: this.qkRequest.controls["sourceLocation"].value === "" ? "Source" : this.qkRequest.controls["sourceLocation"].value,
           phoneNumber: this.qkRequest.controls["phoneNumber"].value,
           latitude: this.lat,
           longitude: this.lng,
           status: "Accepted",
-          vendorId: this.closestAmbulance.VendorId,
+          vendorId: this.closestAmbulance.vendorId,
           vendorName: this.vendor.Name,
-          ambulanceId: this.closestAmbulance.AmbulanceId,
+          ambulanceId: this.closestAmbulance.ambulanceId,
           driverContact: this.amb.Mobile,
           regNumber: this.amb.RegNumber
-        }];
+        };
         let id = "qk" + this.qkRequest.controls["phoneNumber"].value;
         this.qkService.addQuickRequest(args).subscribe(data => {
           this.isQkRequestDone = true;

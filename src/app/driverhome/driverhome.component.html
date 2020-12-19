@@ -1,24 +1,24 @@
 <div class="div-menu">
-        <div class="table">
-            <div class="row">
-                <div class="col-sm-1">
-                    <a routerLink="/driverhome" background-color="red" routerLinkActive="active">Driver Home</a>
-                </div>
-                <div class="col-sm-1">
-                    <a  routerLink="/completedtrips" background-color="red" (click)="onClickTrips()" >Previous Trips</a>
-                </div>
-                <div class="col-sm-2">
-                    <a routerLink="/driverhome" background-color="red">Contact Details</a>
-                </div>
-                <div class="col-sm-1">
-                    <a  routerLink="/driverhome" background-color="red">License Details</a>
-                </div>      
-                <div class="col-sm-1">
-                    <a  routerLink="/home" background-color="red">Logout</a>
-                </div>             
-            </div>              
+    <div class="table">
+        <div class="row">
+            <div class="col-sm-1">
+                <a routerLink="/driverhome" background-color="red" routerLinkActive="active">Driver Home</a>
+            </div>
+            <div class="col-sm-1">
+                <a routerLink="/completedtrips" background-color="red" (click)="onClickTrips()">Previous Trips</a>
+            </div>
+            <div class="col-sm-2">
+                <a routerLink="/driverhome" background-color="red">Contact Details</a>
+            </div>
+            <div class="col-sm-1">
+                <a routerLink="/driverhome" background-color="red">License Details</a>
+            </div>
+            <div class="col-sm-1">
+                <a routerLink="/home" background-color="red" (click)="logout()">Logout</a>
+            </div>
         </div>
     </div>
+</div>
 <div class="content">
     <div class="table">
         <div class="row">
@@ -27,20 +27,14 @@
                     <table class="table table-striped table-bordered">
                         <thead class="black white-text">
                             <tr>
-                                <th class="col">Patient Contact Number</th>
-                                <th class="col">Location</th>
-                                <th class="col"></th>
+                                <th class="col" style="font-size: smaller;">Patient Contact Number</th>
+                                <th class="col" style="font-size: smaller;">Location</th>                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let req of requests">
-                                <td class="col-xs-6">{{req[0].phoneNumber}}</td>
-                                <td class="col-xs-6">{{req[0].source}}</td>
-                                <td class="col-xs-6">
-                                    <button type="button" class="button" style="font-size: smaller; height: 22px;">
-                                        Accept
-                                    </button>
-                                </td>
+                            <tr *ngFor="let req of acceptedRequests">
+                                <td class="col-xs-6" style="font-size: smaller;">{{req.phoneNumber}}</td>
+                                <td class="col-xs-6" style="font-size: smaller;">{{req.source}}</td>                                
                             </tr>
                         </tbody>
                     </table>
@@ -58,4 +52,15 @@
             </div>
         </div>
     </div>
+    <ng-container *ngIf="requests?.length > 0">
+        <app-popup id="custom-modal-1">
+            <div class="alert alert-success" style="font-size: smaller;">
+                <strong>Emergency:</strong> A new request awaits your confirmation.
+                <br>
+                Location: <label id="emgLabel"> {{emgLocation}}</label>
+            </div>
+            <button type="button" class="button" id="btnAccept" (click)="acceptRequest()">Accept</button>
+            <button type="button" class="button" id="btnCancel" (click)="closeModal('custom-modal-1');">Cancel</button>            
+        </app-popup>
+    </ng-container>
 </div>

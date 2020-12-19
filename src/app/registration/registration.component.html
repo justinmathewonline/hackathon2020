@@ -1,5 +1,5 @@
-<div class="content">
-    <div class="divtable">
+<div class="content" style="align-items: center;">
+    <div class="divtable" style="width: 70%;">
         <form [formGroup]="form" (ngSubmit)="onRegister()">
             <div class="card highlight-card card-small">
                 Vendor Registration
@@ -27,7 +27,7 @@
                 <div class="col-sm-2">
                     <select formControlName="organization" class="option" name="organization" id="organization"
                         style="width: 185px;">
-                        <option value="0" (selected)= "true">--Select--</option>
+                        <option value="0" (selected)="true">--Select--</option>
                         <option value="1">Individual</option>
                         <option value="2">Hospital</option>
                         <option value="3">Agency</option>
@@ -69,7 +69,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-2">
-                    <input formControlName="freeRegister" type="checkbox" id="freeRegister" (change)="onCheckChange('F')">
+                    <input formControlName="freeRegister" type="checkbox" id="freeRegister"
+                        (change)="onCheckChange('F')">
                     <label for="freeregister">Free for 1 month</label>
                 </div>
                 <div class="col-sm-2">
@@ -82,8 +83,7 @@
                     <button type="submit" id="btnSubmit" class="btn-style" (click)="onClickregister()">Register</button>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" id="btnCancel" class="btn-style"
-                        (click)="onCancel()">Cancel</button>
+                    <button type="button" id="btnCancel" class="btn-style" (click)="onCancel()">Cancel</button>
                 </div>
             </div>
         </form>

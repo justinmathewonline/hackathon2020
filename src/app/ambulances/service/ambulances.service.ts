@@ -51,6 +51,22 @@ export class AmbulancesService {
     this.url = environment.json_server_url + environment.availableAmbulances;
     return this.http.post(this.url, body, options);
   }
+  deleteAvailableAmbulance(id){
+    this.url = environment.json_server_url + environment.availableAmbulances +"/"+ id;
+    return this.http.delete(this.url)    
+  }
+  updateAvailableAmbulance(id, args) {
+    const body = JSON.stringify(args);
+    const header = {
+      'Content-Type': 'application/json'
+    };
+    const options = {
+      method: 'PUT',
+      headers: new HttpHeaders(header)
+    };
+    this.url = environment.json_server_url + environment.availableAmbulances+"/" +id;
+    return this.http.put(this.url, body, options)    
+  }
 
   postBookAmbulances(args)
   {

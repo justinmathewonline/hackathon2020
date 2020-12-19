@@ -23,6 +23,7 @@ import { UserComponent } from './user/user.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { MapComponent } from './map/map.component';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { PopupModule } from '../app/shared/popup/popup.module';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatGoogleMapsAutocompleteModule
+    MatGoogleMapsAutocompleteModule,
+    PopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
-import { Ambulances } from '../../models/Ambulances';
-import { AvailableAmbulances } from '../../models/AvailableAmbulances';
 import { QuickRequest } from '../../models/QuickRequest';
 
 @Injectable({
@@ -18,7 +16,7 @@ export class QuickrequestService {
     this.url = environment.json_server_url + environment.quickRequest;
     return this.http.get<QuickRequest[]>(this.url);
   }
-  addQuickRequest(args) {
+  addQuickRequest(args) {    
     const body = JSON.stringify(args);
     const header = {
       'Content-Type': 'application/json'
@@ -40,15 +38,12 @@ export class QuickrequestService {
       method: 'PUT',
       headers: new HttpHeaders(header)
     };
-    this.url = environment.json_server_url + environment.quickRequest;
-    return this.http.put(this.url + id, body, options)    
+    this.url = environment.json_server_url + environment.quickRequest+"/" +id;
+    return this.http.put(this.url, body, options)    
   }
 
-  // delete(id){
-  //   return this.httpClient.delete<Product>(this.apiServer + '/products/' + id, this.httpOptions)
-  //   .pipe(
-  //     catchError(this.errorHandler)
-  //   )
-  // }
-
+  deleteQuickRequest(id){
+    this.url = environment.json_server_url + environment.quickRequest + "/" +id;
+    return this.http.delete(this.url)    
+  }
 }

@@ -30,9 +30,7 @@ export class RegistrationComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   onClickregister() {​​
-
     this.router.navigate(['/subscribe']);
-
   }​​
   onCheckChange(type: any) {
     if (type === 'F') {
@@ -44,23 +42,24 @@ export class RegistrationComponent implements OnInit {
   }
  
   onRegister() {
-    const args = [{
-      id: "v" + this.form.controls["name"].value,
-      VendorId: "v" + this.form.controls["name"].value,
-      UserName: this.form.controls["userName"].value,
-      Password: this.form.controls["password"].value,
-      Organization: this.form.controls["organization"].value,
-      Name: this.form.controls["name"].value,
-      Address: this.form.controls["address"].value,
-      Mobile: this.form.controls["mobile"].value,
-      Email: this.form.controls["email"].value,
-      Subscribe: this.form.controls.subscribe.value === true ? "Yes" : "No",
-      Role: this.form.controls["organization"].value === "1" ? "3" : "2"
-    }];
-    this.service.addVendor(args).subscribe();
-    if(this.form.controls.subscribe.value === true){
-      this.router.navigate(['/subscribe']);
-    }
-  }
- 
+    this.service.getVendors().subscribe(data => {
+      const args = {
+        id: data.length + 1,
+        VendorId: "v" + this.form.controls["name"].value,
+        UserName: this.form.controls["userName"].value,
+        Password: this.form.controls["password"].value,
+        Organization: this.form.controls["organization"].value,
+        Name: this.form.controls["name"].value,
+        Address: this.form.controls["address"].value,
+        Mobile: this.form.controls["mobile"].value,
+        Email: this.form.controls["email"].value,
+        Subscribe: this.form.controls.subscribe.value === true ? "Yes" : "No",
+        Role: this.form.controls["organization"].value === "1" ? "3" : "2"
+      };
+      this.service.addVendor(args).subscribe();
+      if(this.form.controls.subscribe.value === true){
+        this.router.navigate(['/subscribe']);
+      }
+    });    
+  } 
 }

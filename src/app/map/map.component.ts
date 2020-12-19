@@ -82,8 +82,7 @@ export class MapComponent implements OnInit {
   }
   getAvailableAmbulancesByLocation(lat: any, lng: any) {
     this.service.getAvailableAmbulancesLocation().subscribe(data => {
-      //this.availableAmbs = data.filter(x=> x.Latitude.split(".").includes(lat.split(".")) && x.Longitude.split(".").includes(lng.split("."))); 
-      this.availableAmbs = data;
+      this.availableAmbs = data.filter(x => x.isOnService === "false");
     });
   }
   clickedMarker(label: string, index: number) {
@@ -127,7 +126,6 @@ export class MapComponent implements OnInit {
     console.log($event);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
-    // this.getAddress(this.latitude, this.longitude);
 
     this.mapsAPILoader.load().then(() => {
       let geocoder = new google.maps.Geocoder;
@@ -135,7 +133,7 @@ export class MapComponent implements OnInit {
         lat: this.latitude,
         lng: this.longitude
       };
-      geocoder.geocode({
+      geocoder.geocode({//requires billing account
         'location': latlng
       }, function (results) {
         if (results[0]) {
