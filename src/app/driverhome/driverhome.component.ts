@@ -3,6 +3,7 @@ import { AmbulancesService } from '../ambulances/service/ambulances.service';
 import { Router } from '@angular/router';
 import { QuickrequestService } from '../home-page/service/quickrequest.service';
 import { QuickRequest } from '../models/QuickRequest';
+import { JsonService } from '../home-page/service/json.service';
 
 @Component({
   selector: 'app-driverhome',
@@ -13,10 +14,17 @@ export class DriverhomeComponent implements OnInit {
   lat = 8.5046;
   lng = 76.899999;
   zoom = 11;
+  dataSubject: any = {};
 
-  constructor(private service: QuickrequestService, private router: Router) { }
+  constructor(private service: QuickrequestService, private router: Router, private dService: JsonService) { }
   public requests: QuickRequest[];
   ngOnInit(): void {
+    this.dService.currentData.subscribe(dataSub => {
+      this.dataSubject = dataSub;
+      if(this.dataSubject!=null){
+        
+      }
+    })
     this.getQuickRequests();
   }
   onClickLogins() {
