@@ -7,13 +7,15 @@
                 Welcome!
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4" style="align-items: center;">
+        <div class="row" style="text-align: center;">
+            <div class="col-sm-18" style="width: 35%;">
+            </div>
+            <div class="col-sm-4"  style="width: 20%;">
                 <form [formGroup]="form">
                     <ng-container id="driver" *ngIf="userRole !== '1'">
-                        <div class="table">
+                        <div class="table divtable">
                             <div class="row">
-                                <div class="col-sm-6">                                   
+                                <div class="col-sm-6">
                                     <select formControlName="ambulances" id="ambulances" name="ambulances"
                                         style="width: 185px;">
                                         <option *ngFor="let ambulance of ambulanceList" [ngValue]="ambulance">
@@ -21,13 +23,15 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-sm-6">
-                                    <button type="button" class="button"(click)="goOnline()">GO ONLINE</button>
+                                <div class="col-sm-4">
+                                    <button type="button" class="button" (click)="goOnline()">GO ONLINE</button>
                                 </div>
                             </div>
                         </div>
                     </ng-container>
                 </form>
+            </div>
+            <div class="col-sm-18" style="width:40%;">
             </div>
         </div>
     </div>

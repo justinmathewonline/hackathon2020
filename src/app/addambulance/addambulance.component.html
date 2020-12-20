@@ -1,85 +1,115 @@
-
 <div class="content">
-    <div>
-        Add Ambulance
+    <div class="table">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <form [formGroup]="form">
+                    <div class="divtable" style="width:100%;">
+                        <div class="table">
+                            <div class="row">
+                                <div class="card-div card-highlight card-small">
+                                    Add Ambulance
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="ambulancetype">Ambulance Type: </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="option" name="ambulancetype" formControlName="ambulancetype"
+                                        style="width: 185px;">
+                                        <option value="0">--Select--</option>
+                                        <option value="Basic">Basic</option>
+                                        <option value="Mortuary">Mortuary</option>
+                                        <option value="Neonatal">Neonatal</option>
+                                        <option value="Patient Transportation">Patient Transportation</option>
+                                        <option value="Advanced">Advanced</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="vehiclenumber">Vehicle Number: </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" id="vehiclenumber" formControlName="vehiclenumber"
+                                        style="width: 185px;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="vehiclemodel">Vehicle Model: </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="option" name="vehiclemodel" id="vehiclemodel"
+                                        formControlName="vehiclemodel" style="width: 185px;">
+                                        <option value="0">--Select--</option>
+                                        <option value="Traveller">Traveller</option>
+                                        <option value="Omni">Omni</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="contactnumber">Contact Number: </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" id="contactnumber" formControlName="contactnumber">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="facilities">Medical Facilities: </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div>
+                                            <input type="checkbox" id="basic" formControlName="basic">
+                                        </div>
+                                        <div>
+                                            <label for="basic">Basic First-Aid</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <input type="checkbox" id="ventilator" formControlName="ventilator">
+                                        </div>
+                                        <div>
+                                            <label for="ventilator">Ventilator</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <input type="checkbox" id="ecg" formControlName="ecg">
+                                        </div>
+                                        <div>
+                                            <label for="ecg">ECG Machine</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <input type="checkbox" id="oxygen" formControlName="oxygen">
+                                        </div>
+                                        <div>
+                                            <label for="oxygen">Oxygen Cylinder</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                    <button type="submit" id="btnSubmit" (click)="onSubmit()" class="button">Add</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" id="btnCancel" (click)="goToAmbulances()" class="button">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
     </div>
-    <form [formGroup]="form">
-    <div class="divtable">
-        <div class="row">
-            <div class="col-sm-6">
-                <label for="ambulancetype">Ambulance Type: </label>
-            </div>
-            <div class="col-sm-2">
-                <select class="option" name="ambulancetype" formControlName="ambulancetype">
-                    <option value="0">--Select--</option>
-                    <option value="Basic">Basic</option>
-                    <option value="Mortuary">Mortuary</option>
-                    <option value="Neonatal">Neonatal</option>
-                    <option value="Patient Transportation">Patient Transportation</option>
-                    <option value="Advanced">Advanced</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label for="vehiclenumber">Vehicle Number: </label>
-            </div>
-            <div class="col-sm-2">
-                <input type="text" id="vehiclenumber"  formControlName="vehiclenumber" >
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label for="vehiclemodel">Vehicle Model: </label>
-            </div>
-            <div class="col-sm-2">
-                <select class="option" name="vehiclemodel" id="vehiclemodel" formControlName="vehiclemodel" >
-                    <option value="0">--Select--</option>
-                    <option value="Traveller">Traveller</option>
-                    <option value="Omni">Omni</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label for="facilities">Medical Facilities: </label>
-            </div>
-            <div class="col-sm-5">
-                <div class="row">
-                    <input type="checkbox" id="basic" formControlName="basic">
-                    <label for="basic">Basic First-Aid</label>
-                </div>
-                <div class="row">
-                    <input type="checkbox"  id="ventilator" formControlName="ventilator"  >
-                    <label for="ventilator">Ventilator</label>
-                </div>
-                <div class="row">
-                    <input type="checkbox" id="ecg" formControlName="ecg">
-                    <label for="ecg">ECG Machine</label>
-                </div>
-                <div class="row">
-                    <input type="checkbox" id="oxygen" formControlName="oxygen">
-                    <label for="oxygen">Oxygen Cylinder</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label for="contactnumber">Contact Number: </label>
-            </div>
-            <div class="col-sm-2">
-                <input type="text" id="contactnumber" formControlName="contactnumber">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <button type="submit" id="btnSubmit" (click)="onSubmit()" >Add</button></div>
-            <div class="col-sm-2">
-                <button type="button" id="btnCancel" (click)="goToAmbulances()" >Cancel</button>
-            </div>
-        </div>
-    </div> 
-</form>  
 </div>
-
-

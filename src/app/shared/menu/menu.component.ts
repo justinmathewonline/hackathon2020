@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private service: AmbulancesService) { }
   public userRole: string;
   public isUserLoggedIn: boolean;
+   
   ngOnInit(): void {
     this.isUserLoggedIn = localStorage.getItem("isUserLoggedIn").toString() === "true" ? true : false;
     this.userRole = localStorage.getItem("role");

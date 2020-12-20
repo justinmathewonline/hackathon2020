@@ -90,45 +90,8 @@
       "Facilities": "Oxygen"
     }
   ],
-  "availableAmbulances": [
-    {
-      "id": 1,
-      "vendorId": "vkims",
-      "ambulanceId": "1",
-      "latitude": 10.0073472,
-      "longitude": 76.3101184,
-      "label": "Label not available",
-      "isOnService": "true"
-    }
-  ],
-  "quickRequest": [
-    {
-      "id": 1,
-      "source": "Source",
-      "phoneNumber": "6534354668",
-      "latitude": 10.0073472,
-      "longitude": 76.3101184,
-      "status": "Accepted",
-      "vendorId": "vkims",
-      "vendorName": "Kims",
-      "ambulanceId": "1",
-      "driverContact": "7658965478",
-      "regNumber": "KL62-3188"
-    },
-    {
-      "id": 2,
-      "source": "Source",
-      "phoneNumber": "9605382448",
-      "latitude": 10.0073472,
-      "longitude": 76.3101184,
-      "status": "Pending",
-      "vendorId": "",
-      "vendorName": "",
-      "ambulanceId": "",
-      "driverContact": "",
-      "regNumber": ""
-    }
-  ],  
+  "availableAmbulances": [],
+  "quickRequest": [],
   "bookAmbulance": [
     [
       {
