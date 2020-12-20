@@ -18,27 +18,23 @@ export class AmbulancesComponent implements OnInit {
 
   getAmbulances() {
    // localStorage.setItem("addambulance", JSON.stringify(args));
-debugger;
+
     var retrievedData = localStorage.getItem("addambulance");
     var fromLocalstorage = JSON.parse(retrievedData); 
 
 
      this.service.getAmbulances().subscribe(data => {
-     
+      
+      this.ambulances=data;
+      
       data.forEach(function(item){  
-        
-        if(fromLocalstorage)
-        {
-        fromLocalstorage.push(item); 
-        }else{
-          this.ambulances=data
+        if(fromLocalstorage){
+          fromLocalstorage.push(item); 
         }
-
+       
       }); 
-      if(fromLocalstorage)
-      {
+       if(fromLocalstorage)
        this.ambulances=fromLocalstorage;
-      }
      });
      
   }
