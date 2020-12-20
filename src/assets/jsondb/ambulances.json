@@ -52,21 +52,32 @@
       "Subscribe": "Yes",
       "Role": "3"
     },
-    [
-      {
-        "id": "5",
-        "VendorId": "vKarunya",
-        "UserName": "Karunya",
-        "Password": "Karunya",
-        "Organization": "3",
-        "Name": "Karunya",
-        "Address": "TVM",
-        "Mobile": "4646457547",
-        "Email": "karunya@test.com",
-        "Subscribe": "No",
-        "Role": "2"
-      }
-    ]
+    {
+      "id": "5",
+      "VendorId": "vKarunya",
+      "UserName": "Karunya",
+      "Password": "Karunya",
+      "Organization": "3",
+      "Name": "Karunya",
+      "Address": "TVM",
+      "Mobile": "4646457547",
+      "Email": "karunya@test.com",
+      "Subscribe": "No",
+      "Role": "2"
+    },
+    {
+      "id": "6",
+      "VendorId": "vJohn",
+      "UserName": "John",
+      "Password": "John",
+      "Organization": "1",
+      "Name": "John J",
+      "Address": "Trivandrum",
+      "Mobile": "9605382448",
+      "Email": "john@gmail.com",
+      "Subscribe": "Yes",
+      "Role": "1"
+    }
   ],
   "ambulances": [
     {
