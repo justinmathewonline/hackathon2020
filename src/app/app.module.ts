@@ -24,6 +24,8 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { MapComponent } from './map/map.component';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { PopupModule } from '../app/shared/popup/popup.module';
+import { MapdirectionComponent } from './mapdirection/mapdirection.component';
+import { AgmDirectionModule } from 'agm-direction'; 
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { PopupModule } from '../app/shared/popup/popup.module';
     SubscribeComponent,
     ProfileComponent,
     MenuComponent,
-    MapComponent
+    MapComponent,
+    MapdirectionComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { PopupModule } from '../app/shared/popup/popup.module';
     FormsModule,
     ReactiveFormsModule,
     MatGoogleMapsAutocompleteModule,
-    PopupModule
+    PopupModule,
+    AgmDirectionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

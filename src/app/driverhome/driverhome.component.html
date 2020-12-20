@@ -41,14 +41,15 @@
                 </div>
             </div>
             <div class="col-sm-4 divTableBack">
-                <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
-                    <!-- <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude"
+                <!-- <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
+                    <agm-marker *ngFor="let marker of availableAmb" [latitude]="marker.Latitude"
                         [longitude]="marker.Longitude">
                         <agm-info-window #infoWindow>
                             {{ marker.Label }}
                         </agm-info-window>
-                    </agm-marker> -->
-                </agm-map>
+                    </agm-marker>
+                </agm-map> -->
+                <app-mapdirection></app-mapdirection>
             </div>
         </div>
     </div>
