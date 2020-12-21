@@ -26,8 +26,7 @@ export class AmbulancesService {
     return this.http.get<AvailableAmbulances[]>(this.url);
   }
 
-  addAmbulance(args) {
-    debugger;
+  addAmbulance(args) {    
     const body = JSON.stringify(args);
     const header = {
       'Content-Type': 'application/json'

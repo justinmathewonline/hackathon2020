@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
   onRegister() {
     this.service.getVendors().subscribe(data => {
       const args = {
-        id: data.length + 1,
+        id: (data.length + 1).toString(),
         VendorId: "v" + this.form.controls["name"].value,
         UserName: this.form.controls["userName"].value,
         Password: this.form.controls["password"].value,
@@ -56,10 +56,11 @@ export class RegistrationComponent implements OnInit {
         Subscribe: this.form.controls.subscribe.value === true ? "Yes" : "No",
         Role: this.form.controls["organization"].value === "1" ? "3" : "2"
       };
-      this.service.addVendor(args).subscribe();
-      if(this.form.controls.subscribe.value === true){
-        this.router.navigate(['/subscribe']);
-      }
+      this.service.addVendor(args).subscribe(data =>{
+        if(this.form.controls.subscribe.value === true){
+          this.router.navigate(['/subscribe']);
+        }
+      });      
     });    
   } 
 }

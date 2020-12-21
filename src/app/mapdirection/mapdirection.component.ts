@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DriverhomeComponent } from '../driverhome/driverhome.component';
 
 interface marker {
   lat: number;
@@ -16,7 +15,7 @@ interface marker {
   styleUrls: ['./mapdirection.component.css']
 })
 export class MapdirectionComponent implements OnInit {
-  @ViewChild(DriverhomeComponent) drvComp;
+  
   constructor() { }
 
   lat = 8.5046;

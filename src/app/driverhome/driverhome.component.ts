@@ -18,10 +18,6 @@ export class DriverhomeComponent implements OnInit {
   lat = 8.5046;
   lng = 76.899999;
   zoom = 11;
-  @Input() slatitude: number;
-  @Input() slongitude: number;
-  @Input() drlatitude: number;
-  @Input() drlongitude: number;
   dataSubject: any = {};
   public emgLocation: string;
   closestReq: QuickRequest;
@@ -47,8 +43,6 @@ export class DriverhomeComponent implements OnInit {
     this.ambService.getAvailableAmbulancesLocation().subscribe(a => {
       this.currentAmbs = a.find(x => x.ambulanceId === localStorage.getItem("currentAmbulanceId")
         && x.vendorId === localStorage.getItem("vendorId"));
-        this.drlatitude = this.currentAmbs.latitude;
-        this.drlongitude = this.currentAmbs.longitude;
       if (this.currentAmbs !== undefined && this.currentAmbs.isOnService === "true") {
         this.getAcceptedRequests(this.currentAmbs.vendorId, this.currentAmbs.ambulanceId);        
       }
